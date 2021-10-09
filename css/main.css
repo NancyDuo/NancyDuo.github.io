@@ -345,8 +345,8 @@ img[lazyload] {
 }
 :root {
   --color-mode: 'light';
-  --body-bg-color: #eee;
-  --board-bg-color: #fff;
+  --body-bg-color: #FAEEE0;
+  --board-bg-color: #FFF5EB;
   --text-color: #3c4858;
   --sec-text-color: #718096;
   --post-text-color: #2c3e50;
@@ -354,7 +354,7 @@ img[lazyload] {
   --post-link-color: #0366d6;
   --link-hover-color: #30a9de;
   --link-hover-bg-color: #f8f9fa;
-  --navbar-bg-color: #2f4154;
+  --navbar-bg-color: #7D5A50;
   --navbar-text-color: #fff;
 }
 @media (prefers-color-scheme: dark) {

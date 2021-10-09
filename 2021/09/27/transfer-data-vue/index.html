@@ -12,24 +12,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#7D5A50">
   <meta name="description" content="">
   <meta name="author" content="Nancy">
   <meta name="keywords" content="">
-  <meta name="description" content="How to transfer data in VueThere are several ways to pass data between different components. I list some that I loved most. props&#x2F;$emitThe following is showing the parent component passing data to chi">
+  <meta name="description" content="1. props &#x2F; $emitThe following is showing the parent component passing data to child. &#x2F;&#x2F; parent &lt;template&gt;   &lt;div class&#x3D;&quot;section&quot;&gt;     &lt;com-article :articles&amp;#x3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to transfer data in Vue">
+<meta property="og:title" content="组件通信 Transfer Data in Vue">
 <meta property="og:url" content="http://example.com/2021/09/27/transfer-data-vue/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="How to transfer data in VueThere are several ways to pass data between different components. I list some that I loved most. props&#x2F;$emitThe following is showing the parent component passing data to chi">
+<meta property="og:description" content="1. props &#x2F; $emitThe following is showing the parent component passing data to child. &#x2F;&#x2F; parent &lt;template&gt;   &lt;div class&#x3D;&quot;section&quot;&gt;     &lt;com-article :articles&amp;#x3">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-26T14:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-06T12:34:20.463Z">
+<meta property="article:modified_time" content="2021-10-09T11:44:14.434Z">
 <meta property="article:author" content="Nancy">
 <meta property="article:tag" content="Vue">
+<meta property="article:tag" content="组件通信">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>How to transfer data in Vue - Hexo</title>
+  <title>组件通信 Transfer Data in Vue - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -41,7 +42,17 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-dark.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
     
   
 
@@ -66,7 +77,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -78,7 +89,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Nancy</strong>
+      <strong>Nancy Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -170,12 +181,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/avatar.png') no-repeat center center;
+         style="background: url('/img/er.jpeg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="How to transfer data in Vue">
+            <span class="h2" id="subtitle" title="组件通信 Transfer Data in Vue">
               
             </span>
 
@@ -210,7 +221,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      39 minutes
+      38 minutes
     </span>
   
 
@@ -247,40 +258,410 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">How to transfer data in Vue</h1>
+            <h1 style="display: none">组件通信 Transfer Data in Vue</h1>
             
             <div class="markdown-body">
-              <h1 id="How-to-transfer-data-in-Vue"><a href="#How-to-transfer-data-in-Vue" class="headerlink" title="How to transfer data in Vue"></a>How to transfer data in Vue</h1><p>There are several ways to pass data between different components. I list some that I loved most.</p>
-<h2 id="props-emit"><a href="#props-emit" class="headerlink" title="props/$emit"></a>props/$emit</h2><p>The following is showing the parent component passing data to child.</p>
-<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml">// parent</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;section&quot;</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">com-article</span> <span class="hljs-attr">:articles</span>=<span class="hljs-string">&quot;articleList&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">com-article</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> comArticle <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./test/article.vue&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">components</span>: &#123; comArticle &#125;,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">articleList</span>: [<span class="hljs-string">&#x27;Hong&#x27;</span>, <span class="hljs-string">&#x27;Xi&#x27;</span>, <span class="hljs-string">&#x27;San&#x27;</span>]</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml">// child</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) in articles&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">item</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">props</span>: [<span class="hljs-string">&#x27;articles&#x27;</span>]</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br></code></pre></td></tr></table></figure>
+              <h2 id="1-props-emit"><a href="#1-props-emit" class="headerlink" title="1. props / $emit"></a>1. props / $emit</h2><p>The following is showing the parent component passing data to child.</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; parent
+&lt;template&gt;
+  &lt;div class&#x3D;&quot;section&quot;&gt;
+    &lt;com-article :articles&#x3D;&quot;articleList&quot;&gt;&lt;&#x2F;com-article&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+import comArticle from &#39;.&#x2F;test&#x2F;article.vue&#39;
+export default &#123;
+  name: &#39;HelloWorld&#39;,
+  components: &#123; comArticle &#125;,
+  data() &#123;
+    return &#123;
+      articleList: [&#39;Hong&#39;, &#39;Xi&#39;, &#39;San&#39;]
+    &#125;
+  &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; child
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;span v-for&#x3D;&quot;(item, index) in articles&quot; :key&#x3D;&quot;index&quot;&gt;&#123;&#123;item&#125;&#125;&lt;&#x2F;span&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+export default &#123;
+  props: [&#39;articles&#39;]
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>Child component passes data to parent by $emit</p>
-<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml">//parent</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;section&quot;</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">com-article</span> <span class="hljs-attr">:articles</span>=<span class="hljs-string">&quot;articleList&quot;</span> @<span class="hljs-attr">onEmitIndex</span>=<span class="hljs-string">&quot;onEmitIndex&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">com-article</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">currentIndex</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> comArticle <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./test/article.vue&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">components</span>: &#123; comArticle &#125;,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">currentIndex</span>: -<span class="hljs-number">1</span>,</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">articleList</span>: [<span class="hljs-string">&#x27;Hong&#x27;</span>, <span class="hljs-string">&#x27;Xi&#x27;</span>, <span class="hljs-string">&#x27;Three&#x27;</span>]</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">methods</span>: &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">onEmitIndex</span>(<span class="hljs-params">idx</span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-built_in">this</span>.currentIndex = idx</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml">//child</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) in articles&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;index&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;emitIndex(index)&quot;</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">item</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">props</span>: [<span class="hljs-string">&#x27;articles&#x27;</span>],</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">methods</span>: &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">emitIndex</span>(<span class="hljs-params">index</span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&#x27;onEmitIndex&#x27;</span>, index)</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="children-parent"><a href="#children-parent" class="headerlink" title="$children/$parent"></a>$children/$parent</h2><figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml">// parent</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hello_world&quot;</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">msg</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">com-a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">com-a</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;changeA&quot;</span>&gt;</span>change value<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> ComA <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./test/comA.vue&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">components</span>: &#123; ComA &#125;,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;Welcome&#x27;</span></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">methods</span>: &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">changeA</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-comment">// get data from child</span></span></span><br><span class="javascript"><span class="xml">      <span class="hljs-built_in">this</span>.$children[<span class="hljs-number">0</span>].messageA = <span class="hljs-string">&#x27;this is new value&#x27;</span></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml">//child</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;com_a&quot;</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">messageA</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>get parent value:  </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">parentVal</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">messageA</span>: <span class="hljs-string">&#x27;this is old&#x27;</span></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">computed</span>:&#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">parentVal</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-comment">// parent data</span></span></span><br><span class="javascript"><span class="xml">      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.$parent.msg;</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="provide-inject"><a href="#provide-inject" class="headerlink" title="provide/inject"></a>provide/inject</h2><p>The following is showing: A has B, B has C</p>
-<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml">// A.vue</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">	<span class="hljs-tag">&lt;<span class="hljs-name">comB</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">comB</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">import</span> comB <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/test/comB.vue&#x27;</span></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;A&quot;</span>,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">provide</span>: &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">for</span>: <span class="hljs-string">&quot;demo&quot;</span></span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">components</span>:&#123;</span></span><br><span class="javascript"><span class="xml">      comB</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml">// B.vue</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">demo</span>&#125;&#125;</span><span class="xml"></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">comC</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">comC</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">import</span> comC <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/test/comC.vue&#x27;</span></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;B&quot;</span>,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">inject</span>: [<span class="hljs-string">&#x27;for&#x27;</span>],</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-attr">demo</span>: <span class="hljs-built_in">this</span>.for</span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">components</span>: &#123;</span></span><br><span class="javascript"><span class="xml">      comC</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml">// C.vue</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">demo</span>&#125;&#125;</span><span class="xml"></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;C&quot;</span>,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">inject</span>: [<span class="hljs-string">&#x27;for&#x27;</span>],</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-attr">demo</span>: <span class="hljs-built_in">this</span>.for</span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="ref-refs"><a href="#ref-refs" class="headerlink" title="ref/refs"></a>ref/refs</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//child: A.vue</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  data () &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Vue.js&#x27;</span><br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">methods</span>: &#123;<br>    sayHello () &#123;<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;hello&#x27;</span>)<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">//parent: app.vue</span><br>&lt;template&gt;<br>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">component-a</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;comA&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component-a</span>&gt;</span></span><br>&lt;/template&gt;<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    mounted () &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-keyword">const</span> comA = <span class="hljs-built_in">this</span>.$refs.comA;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-built_in">console</span>.log(comA.name);  <span class="hljs-comment">// Vue.js</span></span></span><br><span class="javascript"><span class="xml">      comA.sayHello();  <span class="hljs-comment">// hello</span></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="eventBus"><a href="#eventBus" class="headerlink" title="eventBus"></a>eventBus</h2><ol>
-<li>create event-bus.js<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// event-bus.js</span><br><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> EventBus = <span class="hljs-keyword">new</span> Vue()<br></code></pre></td></tr></table></figure></li>
-<li>we got 2 components<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">show-num-com</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">show-num-com</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">addition-num-com</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">addition-num-com</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> showNumCom <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./showNum.vue&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> additionNumCom <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./additionNum.vue&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> </span></span><span class="hljs-template-variable">&#123;</span><br><span class="hljs-template-variable">  components: &#123; showNumCom, additionNumCom &#125;</span><span class="xml"></span><br><span class="xml">&#125;</span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure></li>
-<li>Additon.vue passes data to Show.vue<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml">// addition.vue</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;additionHandle&quot;</span>&gt;</span>+adder<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>    </span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> &#123;EventBus&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./event-bus.js&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-keyword">return</span>&#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">num</span>:<span class="hljs-number">1</span></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;,</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-attr">methods</span>:&#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">additionHandle</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="javascript"><span class="xml">      EventBus.$emit(<span class="hljs-string">&#x27;addition&#x27;</span>, &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-attr">num</span>:<span class="hljs-built_in">this</span>.num++</span></span><br><span class="javascript"><span class="xml">      &#125;)</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml">// showNum.vue </span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>total: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">count</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">import</span> &#123; EventBus &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./event-bus.js&#x27;</span></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">count</span>: <span class="hljs-number">0</span></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;,</span></span><br><span class="javascript"><span class="xml"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-function"><span class="hljs-title">mounted</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">    EventBus.$on(<span class="hljs-string">&#x27;addition&#x27;</span>, <span class="hljs-function"><span class="hljs-params">param</span> =&gt;</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-built_in">this</span>.count = <span class="hljs-built_in">this</span>.count + param.num;</span></span><br><span class="javascript"><span class="xml">    &#125;)</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2></li>
-</ol>
-<ul>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;parent
+&lt;template&gt;
+  &lt;div class&#x3D;&quot;section&quot;&gt;
+    &lt;com-article :articles&#x3D;&quot;articleList&quot; @onEmitIndex&#x3D;&quot;onEmitIndex&quot;&gt;&lt;&#x2F;com-article&gt;
+    &lt;p&gt;&#123;&#123;currentIndex&#125;&#125;&lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+import comArticle from &#39;.&#x2F;test&#x2F;article.vue&#39;
+export default &#123;
+  name: &#39;HelloWorld&#39;,
+  components: &#123; comArticle &#125;,
+  data() &#123;
+    return &#123;
+      currentIndex: -1,
+      articleList: [&#39;Hong&#39;, &#39;Xi&#39;, &#39;Three&#39;]
+    &#125;
+  &#125;,
+  methods: &#123;
+    onEmitIndex(idx) &#123;
+      this.currentIndex &#x3D; idx
+    &#125;
+  &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;child
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;div v-for&#x3D;&quot;(item, index) in articles&quot; :key&#x3D;&quot;index&quot; @click&#x3D;&quot;emitIndex(index)&quot;&gt;&#123;&#123;item&#125;&#125;&lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+export default &#123;
+  props: [&#39;articles&#39;],
+  methods: &#123;
+    emitIndex(index) &#123;
+      this.$emit(&#39;onEmitIndex&#39;, index)
+    &#125;
+  &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="2-children-parent"><a href="#2-children-parent" class="headerlink" title="2. $children / $parent"></a>2. $children / $parent</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; parent
+&lt;template&gt;
+  &lt;div class&#x3D;&quot;hello_world&quot;&gt;
+    &lt;div&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;div&gt;
+    &lt;com-a&gt;&lt;&#x2F;com-a&gt;
+    &lt;button @click&#x3D;&quot;changeA&quot;&gt;change value&lt;&#x2F;button&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+import ComA from &#39;.&#x2F;test&#x2F;comA.vue&#39;
+export default &#123;
+  name: &#39;HelloWorld&#39;,
+  components: &#123; ComA &#125;,
+  data() &#123;
+    return &#123;
+      msg: &#39;Welcome&#39;
+    &#125;
+  &#125;,
+  methods: &#123;
+    changeA() &#123;
+      &#x2F;&#x2F; get data from child
+      this.$children[0].messageA &#x3D; &#39;this is new value&#39;
+    &#125;
+  &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;child
+&lt;template&gt;
+  &lt;div class&#x3D;&quot;com_a&quot;&gt;
+    &lt;span&gt;&#123;&#123;messageA&#125;&#125;&lt;&#x2F;span&gt;
+    &lt;p&gt;get parent value:  &#123;&#123;parentVal&#125;&#125;&lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      messageA: &#39;this is old&#39;
+    &#125;
+  &#125;,
+  computed:&#123;
+    parentVal()&#123;
+      &#x2F;&#x2F; parent data
+      return this.$parent.msg;
+    &#125;
+  &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="3-provide-inject"><a href="#3-provide-inject" class="headerlink" title="3. provide/inject"></a>3. provide/inject</h2><p>The following is showing: A has B, B has C</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; A.vue
+&lt;template&gt;
+  &lt;div&gt;
+	&lt;comB&gt;&lt;&#x2F;comB&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+  import comB from &#39;..&#x2F;components&#x2F;test&#x2F;comB.vue&#39;
+  export default &#123;
+    name: &quot;A&quot;,
+    provide: &#123;
+      for: &quot;demo&quot;
+    &#125;,
+    components:&#123;
+      comB
+    &#125;
+  &#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; B.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &#123;&#123;demo&#125;&#125;
+    &lt;comC&gt;&lt;&#x2F;comC&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+  import comC from &#39;..&#x2F;components&#x2F;test&#x2F;comC.vue&#39;
+  export default &#123;
+    name: &quot;B&quot;,
+    inject: [&#39;for&#39;],
+    data() &#123;
+      return &#123;
+        demo: this.for
+      &#125;
+    &#125;,
+    components: &#123;
+      comC
+    &#125;
+  &#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; C.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &#123;&#123;demo&#125;&#125;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+  export default &#123;
+    name: &quot;C&quot;,
+    inject: [&#39;for&#39;],
+    data() &#123;
+      return &#123;
+        demo: this.for
+      &#125;
+    &#125;
+  &#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="4-ref-refs"><a href="#4-ref-refs" class="headerlink" title="4. ref / refs"></a>4. ref / refs</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;child: A.vue
+export default &#123;
+  data () &#123;
+    return &#123;
+      name: &#39;Vue.js&#39;
+    &#125;
+  &#125;,
+  methods: &#123;
+    sayHello () &#123;
+      console.log(&#39;hello&#39;)
+    &#125;
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;parent: app.vue
+&lt;template&gt;
+  &lt;component-a ref&#x3D;&quot;comA&quot;&gt;&lt;&#x2F;component-a&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+  export default &#123;
+    mounted () &#123;
+      const comA &#x3D; this.$refs.comA;
+      console.log(comA.name);  &#x2F;&#x2F; Vue.js
+      comA.sayHello();  &#x2F;&#x2F; hello
+    &#125;
+  &#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="5-eventBus"><a href="#5-eventBus" class="headerlink" title="5. eventBus"></a>5. eventBus</h2><p>create event-bus.js</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; event-bus.js
+import Vue from &#39;vue&#39;
+export const EventBus &#x3D; new Vue()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>we got 2 components</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;template&gt;
+  &lt;div&gt;
+    &lt;show-num-com&gt;&lt;&#x2F;show-num-com&gt;
+    &lt;addition-num-com&gt;&lt;&#x2F;addition-num-com&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+import showNumCom from &#39;.&#x2F;showNum.vue&#39;
+import additionNumCom from &#39;.&#x2F;additionNum.vue&#39;
+export default &#123;
+  components: &#123; showNumCom, additionNumCom &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>Additon.vue passes data to Show.vue</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; addition.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click&#x3D;&quot;additionHandle&quot;&gt;+adder&lt;&#x2F;button&gt;    
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+import &#123;EventBus&#125; from &#39;.&#x2F;event-bus.js&#39;
+export default &#123;
+  data()&#123;
+    return&#123;
+      num:1
+    &#125;
+  &#125;,
+  methods:&#123;
+    additionHandle()&#123;
+      EventBus.$emit(&#39;addition&#39;, &#123;
+        num:this.num++
+      &#125;)
+    &#125;
+  &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; showNum.vue 
+&lt;template&gt;
+  &lt;div&gt;total: &#123;&#123;count&#125;&#125;&lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+import &#123; EventBus &#125; from &#39;.&#x2F;event-bus.js&#39;
+export default &#123;
+  data() &#123;
+    return &#123;
+      count: 0
+    &#125;
+  &#125;,
+
+  mounted() &#123;
+    EventBus.$on(&#39;addition&#39;, param &#x3D;&gt; &#123;
+      this.count &#x3D; this.count + param.num;
+    &#125;)
+  &#125;
+&#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="6-Vuex"><a href="#6-Vuex" class="headerlink" title="6. Vuex"></a>6. Vuex</h2><ul>
 <li>state: store data</li>
 <li>getter: similiar with vue computed, using for filter or computed</li>
 <li>mutations: doing calculation, not for asynchronous</li>
-<li>actions: data filter, good for asynchronous<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// parent</span><br>&lt;template&gt;<br>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ChildA</span>/&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ChildB</span>/&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&lt;/template&gt;<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">import</span> ChildA <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/ChildA&#x27;</span> </span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">import</span> ChildB <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/ChildB&#x27;</span></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;App&#x27;</span>,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">components</span>: &#123;ChildA, ChildB&#125; </span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><br><span class="hljs-comment">//childA</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;childA&quot;</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我是A组件<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;transform&quot;</span>&gt;</span>send data to B<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>get data from B：&#123;&#123;BMessage&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-attr">AMessage</span>: <span class="hljs-string">&#x27;Hello，B，I am A&#x27;</span></span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">computed</span>: &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-function"><span class="hljs-title">BMessage</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.$store.state.BMsg</span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">methods</span>: &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-function"><span class="hljs-title">transform</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&#x27;receiveAMsg&#x27;</span>, &#123;</span></span><br><span class="javascript"><span class="xml">          <span class="hljs-attr">AMsg</span>: <span class="hljs-built_in">this</span>.AMessage</span></span><br><span class="javascript"><span class="xml">        &#125;)</span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><br><span class="hljs-comment">// childB</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;childB&quot;</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>I am B<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;transform&quot;</span>&gt;</span>send data to A<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>get data from A：&#123;&#123;AMessage&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-attr">BMessage</span>: <span class="hljs-string">&#x27;Hello，A，I am B&#x27;</span></span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">computed</span>: &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-function"><span class="hljs-title">AMessage</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.$store.state.AMsg</span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;,</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-attr">methods</span>: &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-function"><span class="hljs-title">transform</span>(<span class="hljs-params"></span>)</span> &#123;</span></span><br><span class="javascript"><span class="xml">        <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&#x27;receiveBMsg&#x27;</span>, &#123;</span></span><br><span class="javascript"><span class="xml">          <span class="hljs-attr">BMsg</span>: <span class="hljs-built_in">this</span>.BMessage</span></span><br><span class="javascript"><span class="xml">        &#125;)</span></span><br><span class="javascript"><span class="xml">      &#125;</span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><br><span class="hljs-comment">// store.js</span><br><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br>Vue.use(Vuex)<br><br><span class="hljs-comment">// store data</span><br><span class="hljs-keyword">const</span> state = &#123;<br>  <span class="hljs-attr">AMsg</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>  <span class="hljs-attr">BMsg</span>: <span class="hljs-string">&#x27;&#x27;</span><br>&#125;<br><span class="hljs-keyword">const</span> mutations = &#123;<br>  <span class="hljs-function"><span class="hljs-title">receiveAMsg</span>(<span class="hljs-params">state, payload</span>)</span> &#123;<br>    state.AMsg = payload.AMsg<br>  &#125;,<br>  <span class="hljs-function"><span class="hljs-title">receiveBMsg</span>(<span class="hljs-params">state, payload</span>)</span> &#123;<br>    state.BMsg = payload.BMsg<br>  &#125;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Vuex.Store(&#123;<br>  state,<br>  mutations<br>&#125;)<br></code></pre></td></tr></table></figure>
+<li>actions: data filter, good for asynchronous<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; parent
+&lt;template&gt;
+  &lt;div id&#x3D;&quot;app&quot;&gt;
+    &lt;ChildA&#x2F;&gt;
+    &lt;ChildB&#x2F;&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+  import ChildA from &#39;.&#x2F;components&#x2F;ChildA&#39; 
+  import ChildB from &#39;.&#x2F;components&#x2F;ChildB&#39;
+  export default &#123;
+    name: &#39;App&#39;,
+    components: &#123;ChildA, ChildB&#125; 
+  &#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;childA
+&lt;template&gt;
+  &lt;div id&#x3D;&quot;childA&quot;&gt;
+    &lt;h1&gt;I am A&lt;&#x2F;h1&gt;
+    &lt;button @click&#x3D;&quot;transform&quot;&gt;send data to B&lt;&#x2F;button&gt;
+    &lt;p&gt;get data from B：&#123;&#123;BMessage&#125;&#125;&lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+  export default &#123;
+    data() &#123;
+      return &#123;
+        AMessage: &#39;Hello，B，I am A&#39;
+      &#125;
+    &#125;,
+    computed: &#123;
+      BMessage() &#123;
+        return this.$store.state.BMsg
+      &#125;
+    &#125;,
+    methods: &#123;
+      transform() &#123;
+        this.$store.commit(&#39;receiveAMsg&#39;, &#123;
+          AMsg: this.AMessage
+        &#125;)
+      &#125;
+    &#125;
+  &#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; childB
+&lt;template&gt;
+  &lt;div id&#x3D;&quot;childB&quot;&gt;
+    &lt;h1&gt;I am B&lt;&#x2F;h1&gt;
+    &lt;button @click&#x3D;&quot;transform&quot;&gt;send data to A&lt;&#x2F;button&gt;
+    &lt;p&gt;get data from A：&#123;&#123;AMessage&#125;&#125;&lt;&#x2F;p&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+&lt;script&gt;
+  export default &#123;
+    data() &#123;
+      return &#123;
+        BMessage: &#39;Hello，A，I am B&#39;
+      &#125;
+    &#125;,
+    computed: &#123;
+      AMessage() &#123;
+        return this.$store.state.AMsg
+      &#125;
+    &#125;,
+    methods: &#123;
+      transform() &#123;
+        this.$store.commit(&#39;receiveBMsg&#39;, &#123;
+          BMsg: this.BMessage
+        &#125;)
+      &#125;
+    &#125;
+  &#125;
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; store.js
+import Vue from &#39;vue&#39;
+import Vuex from &#39;vuex&#39;
+Vue.use(Vuex)
+
+&#x2F;&#x2F; store data
+const state &#x3D; &#123;
+  AMsg: &#39;&#39;,
+  BMsg: &#39;&#39;
+&#125;
+const mutations &#x3D; &#123;
+  receiveAMsg(state, payload) &#123;
+    state.AMsg &#x3D; payload.AMsg
+  &#125;,
+  receiveBMsg(state, payload) &#123;
+    state.BMsg &#x3D; payload.BMsg
+  &#125;
+&#125;
+export default new Vuex.Store(&#123;
+  state,
+  mutations
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="四个map方法的使用"><a href="#四个map方法的使用" class="headerlink" title="四个map方法的使用"></a>四个map方法的使用</h3></li>
 </ul>
 <ol>
 <li><p><strong>mapState方法：</strong>用于帮助我们映射<code>state</code>中的数据为计算属性</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">computed: &#123;<br>    <span class="hljs-comment">//借助mapState生成计算属性：sum、school、subject（对象写法）</span><br>     ...mapState(&#123;<span class="hljs-attr">sum</span>:<span class="hljs-string">&#x27;sum&#x27;</span>,<span class="hljs-attr">school</span>:<span class="hljs-string">&#x27;school&#x27;</span>,<span class="hljs-attr">subject</span>:<span class="hljs-string">&#x27;subject&#x27;</span>&#125;),<br>         <br>    <span class="hljs-comment">//借助mapState生成计算属性：sum、school、subject（数组写法）</span><br>    ...mapState([<span class="hljs-string">&#x27;sum&#x27;</span>,<span class="hljs-string">&#x27;school&#x27;</span>,<span class="hljs-string">&#x27;subject&#x27;</span>]),<br>&#125;,<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">computed<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//借助mapState生成计算属性：sum、school、subject（对象写法）</span>
+     <span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>sum<span class="token operator">:</span><span class="token string">'sum'</span><span class="token punctuation">,</span>school<span class="token operator">:</span><span class="token string">'school'</span><span class="token punctuation">,</span>subject<span class="token operator">:</span><span class="token string">'subject'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+         
+    <span class="token comment">//借助mapState生成计算属性：sum、school、subject（数组写法）</span>
+    <span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'sum'</span><span class="token punctuation">,</span><span class="token string">'school'</span><span class="token punctuation">,</span><span class="token string">'subject'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p><strong>mapGetters方法：</strong>用于帮助我们映射<code>getters</code>中的数据为计算属性</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">computed: &#123;<br>    <span class="hljs-comment">//借助mapGetters生成计算属性：bigSum（对象写法）</span><br>    ...mapGetters(&#123;<span class="hljs-attr">bigSum</span>:<span class="hljs-string">&#x27;bigSum&#x27;</span>&#125;),<br><br>    <span class="hljs-comment">//借助mapGetters生成计算属性：bigSum（数组写法）</span><br>    ...mapGetters([<span class="hljs-string">&#x27;bigSum&#x27;</span>])<br>&#125;,<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">computed<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//借助mapGetters生成计算属性：bigSum（对象写法）</span>
+    <span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>bigSum<span class="token operator">:</span><span class="token string">'bigSum'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment">//借助mapGetters生成计算属性：bigSum（数组写法）</span>
+    <span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'bigSum'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p><strong>mapActions方法：</strong>用于帮助我们生成与<code>actions</code>对话的方法，即：包含<code>$store.dispatch(xxx)</code>的函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">methods:&#123;<br>    <span class="hljs-comment">//靠mapActions生成：incrementOdd、incrementWait（对象形式）</span><br>    ...mapActions(&#123;<span class="hljs-attr">incrementOdd</span>:<span class="hljs-string">&#x27;jiaOdd&#x27;</span>,<span class="hljs-attr">incrementWait</span>:<span class="hljs-string">&#x27;jiaWait&#x27;</span>&#125;)<br><br>    <span class="hljs-comment">//靠mapActions生成：incrementOdd、incrementWait（数组形式）</span><br>    ...mapActions([<span class="hljs-string">&#x27;jiaOdd&#x27;</span>,<span class="hljs-string">&#x27;jiaWait&#x27;</span>])<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">methods<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//靠mapActions生成：incrementOdd、incrementWait（对象形式）</span>
+    <span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>incrementOdd<span class="token operator">:</span><span class="token string">'jiaOdd'</span><span class="token punctuation">,</span>incrementWait<span class="token operator">:</span><span class="token string">'jiaWait'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//靠mapActions生成：incrementOdd、incrementWait（数组形式）</span>
+    <span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'jiaOdd'</span><span class="token punctuation">,</span><span class="token string">'jiaWait'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p><strong>mapMutations方法：</strong>用于帮助我们生成与<code>mutations</code>对话的方法，即：包含<code>$store.commit(xxx)</code>的函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">methods:&#123;<br>    <span class="hljs-comment">//靠mapActions生成：increment、decrement（对象形式）</span><br>    ...mapMutations(&#123;<span class="hljs-attr">increment</span>:<span class="hljs-string">&#x27;JIA&#x27;</span>,<span class="hljs-attr">decrement</span>:<span class="hljs-string">&#x27;JIAN&#x27;</span>&#125;),<br>    <br>    <span class="hljs-comment">//靠mapMutations生成：JIA、JIAN（对象形式）</span><br>    ...mapMutations([<span class="hljs-string">&#x27;JIA&#x27;</span>,<span class="hljs-string">&#x27;JIAN&#x27;</span>]),<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">methods<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//靠mapActions生成：increment、decrement（对象形式）</span>
+    <span class="token operator">...</span><span class="token function">mapMutations</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>increment<span class="token operator">:</span><span class="token string">'JIA'</span><span class="token punctuation">,</span>decrement<span class="token operator">:</span><span class="token string">'JIAN'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    
+    <span class="token comment">//靠mapMutations生成：JIA、JIAN（对象形式）</span>
+    <span class="token operator">...</span><span class="token function">mapMutations</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'JIA'</span><span class="token punctuation">,</span><span class="token string">'JIAN'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 </ol>
 <blockquote>
 <p>备注：mapActions与mapMutations使用时，若需要传递参数需要：在模板中绑定事件时传递好参数，否则参数是事件对象。</p>
@@ -289,21 +670,119 @@
 <li><p>目的：让代码更好维护，让多种数据分类更加明确。</p>
 </li>
 <li><p>修改<code>store.js</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> countAbout = &#123;<br>  <span class="hljs-attr">namespaced</span>:<span class="hljs-literal">true</span>,<span class="hljs-comment">//开启命名空间</span><br>  <span class="hljs-attr">state</span>:&#123;<span class="hljs-attr">x</span>:<span class="hljs-number">1</span>&#125;,<br>  <span class="hljs-attr">mutations</span>: &#123; ... &#125;,<br>  <span class="hljs-attr">actions</span>: &#123; ... &#125;,<br>  <span class="hljs-attr">getters</span>: &#123;<br>    <span class="hljs-function"><span class="hljs-title">bigSum</span>(<span class="hljs-params">state</span>)</span>&#123;<br>       <span class="hljs-keyword">return</span> state.sum * <span class="hljs-number">10</span><br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> personAbout = &#123;<br>  <span class="hljs-attr">namespaced</span>:<span class="hljs-literal">true</span>,<span class="hljs-comment">//开启命名空间</span><br>  <span class="hljs-attr">state</span>:&#123; ... &#125;,<br>  <span class="hljs-attr">mutations</span>: &#123; ... &#125;,<br>  <span class="hljs-attr">actions</span>: &#123; ... &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store(&#123;<br>  <span class="hljs-attr">modules</span>: &#123;<br>    countAbout,<br>    personAbout<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> countAbout <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  namespaced<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//开启命名空间</span>
+  state<span class="token operator">:</span><span class="token punctuation">&#123;</span>x<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  mutations<span class="token operator">:</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  actions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  getters<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">bigSum</span><span class="token punctuation">(</span><span class="token parameter">state</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+       <span class="token keyword">return</span> state<span class="token punctuation">.</span>sum <span class="token operator">*</span> <span class="token number">10</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> personAbout <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  namespaced<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//开启命名空间</span>
+  state<span class="token operator">:</span><span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  mutations<span class="token operator">:</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  actions<span class="token operator">:</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  modules<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    countAbout<span class="token punctuation">,</span>
+    personAbout
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p>开启命名空间后，组件中读取state数据：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//方式一：自己直接读取</span><br><span class="hljs-built_in">this</span>.$store.state.personAbout.list<br><span class="hljs-comment">//方式二：借助mapState读取：</span><br>...mapState(<span class="hljs-string">&#x27;countAbout&#x27;</span>,[<span class="hljs-string">&#x27;sum&#x27;</span>,<span class="hljs-string">&#x27;school&#x27;</span>,<span class="hljs-string">&#x27;subject&#x27;</span>]),<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//方式一：自己直接读取</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>personAbout<span class="token punctuation">.</span>list
+<span class="token comment">//方式二：借助mapState读取：</span>
+<span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'sum'</span><span class="token punctuation">,</span><span class="token string">'school'</span><span class="token punctuation">,</span><span class="token string">'subject'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p>开启命名空间后，组件中读取getters数据：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//方式一：自己直接读取</span><br><span class="hljs-built_in">this</span>.$store.getters[<span class="hljs-string">&#x27;personAbout/firstPersonName&#x27;</span>]<br><span class="hljs-comment">//方式二：借助mapGetters读取：</span><br>...mapGetters(<span class="hljs-string">&#x27;countAbout&#x27;</span>,[<span class="hljs-string">&#x27;bigSum&#x27;</span>])<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//方式一：自己直接读取</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>getters<span class="token punctuation">[</span><span class="token string">'personAbout/firstPersonName'</span><span class="token punctuation">]</span>
+<span class="token comment">//方式二：借助mapGetters读取：</span>
+<span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'bigSum'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p>开启命名空间后，组件中调用dispatch</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//方式一：自己直接dispatch</span><br><span class="hljs-built_in">this</span>.$store.dispatch(<span class="hljs-string">&#x27;personAbout/addPersonWang&#x27;</span>,person)<br><span class="hljs-comment">//方式二：借助mapActions：</span><br>...mapActions(<span class="hljs-string">&#x27;countAbout&#x27;</span>,&#123;<span class="hljs-attr">incrementOdd</span>:<span class="hljs-string">&#x27;jiaOdd&#x27;</span>,<span class="hljs-attr">incrementWait</span>:<span class="hljs-string">&#x27;jiaWait&#x27;</span>&#125;)<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//方式一：自己直接dispatch</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'personAbout/addPersonWang'</span><span class="token punctuation">,</span>person<span class="token punctuation">)</span>
+<span class="token comment">//方式二：借助mapActions：</span>
+<span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>incrementOdd<span class="token operator">:</span><span class="token string">'jiaOdd'</span><span class="token punctuation">,</span>incrementWait<span class="token operator">:</span><span class="token string">'jiaWait'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 <li><p>开启命名空间后，组件中调用commit</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//方式一：自己直接commit</span><br><span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&#x27;personAbout/ADD_PERSON&#x27;</span>,person)<br><span class="hljs-comment">//方式二：借助mapMutations：</span><br>...mapMutations(<span class="hljs-string">&#x27;countAbout&#x27;</span>,&#123;<span class="hljs-attr">increment</span>:<span class="hljs-string">&#x27;JIA&#x27;</span>,<span class="hljs-attr">decrement</span>:<span class="hljs-string">&#x27;JIAN&#x27;</span>&#125;),<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//方式一：自己直接commit</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'personAbout/ADD_PERSON'</span><span class="token punctuation">,</span>person<span class="token punctuation">)</span>
+<span class="token comment">//方式二：借助mapMutations：</span>
+<span class="token operator">...</span><span class="token function">mapMutations</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>increment<span class="token operator">:</span><span class="token string">'JIA'</span><span class="token punctuation">,</span>decrement<span class="token operator">:</span><span class="token string">'JIAN'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 </ol>
-<h2 id="localStorage-sessionStorage"><a href="#localStorage-sessionStorage" class="headerlink" title="localStorage/ sessionStorage"></a>localStorage/ sessionStorage</h2><p>we can read date by window.localStorage.getItem(key) and save data by window.localStorage.setItem(key,value). Remember to use JSON.parse() and JSON.stringify()</p>
-<h2 id="slot"><a href="#slot" class="headerlink" title="slot"></a>slot</h2><ol>
-<li>默认插槽：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">父组件中：<br>        &lt;Category&gt;<br>           &lt;div&gt;html结构1&lt;/div&gt;<br>        &lt;/Category&gt;<br>子组件中：<br>        &lt;template&gt;<br>            &lt;div&gt;<br>               &lt;!-- 定义插槽 --&gt;<br>               &lt;slot&gt;插槽默认内容...&lt;/slot&gt;<br>            &lt;/div&gt;<br>        &lt;/template&gt;<br></code></pre></td></tr></table></figure></li>
-<li>具名插槽：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml">父组件中：<br>        <span class="hljs-tag">&lt;<span class="hljs-name">Category</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span><br>              <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>html结构1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">v-slot:footer</span>&gt;</span><br>               <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>html结构2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">Category</span>&gt;</span><br>子组件中：<br>        <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>               <span class="hljs-comment">&lt;!-- 定义插槽 --&gt;</span><br>               <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>插槽默认内容...<span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span><br>               <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;</span>插槽默认内容...<span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
-<li>作用域插槽：<span style="color:red">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。</span>（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs xquery">父组件中：<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Category</span>&gt;</span></span><br><span class="xml"></span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;scopeData&quot;</span>&gt;</span></span><br><span class="xml"><span class="hljs-comment">&lt;!-- 生成的是ul列表 --&gt;</span></span><br><span class="xml"></span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span><br><span class="xml"></span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;g in scopeData.games&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;g&quot;</span>&gt;</span></span><span class="xquery">&#123;&#123;g&#125;</span><span class="xml">&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Category</span>&gt;</span></span><br>         <br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Category</span>&gt;</span></span><br><span class="xml"></span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">slot-scope</span>=<span class="hljs-string">&quot;scopeData&quot;</span>&gt;</span></span><br><span class="xml"><span class="hljs-comment">&lt;!-- 生成的是h4标题 --&gt;</span></span><br><span class="xml"></span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;g in scopeData.games&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;g&quot;</span>&gt;</span></span><span class="xquery">&#123;&#123;g&#125;</span><span class="xml">&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span></span><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Category</span>&gt;</span></span><br><br>子组件中：  <br>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">        </span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">           </span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">:games</span>=<span class="hljs-string">&quot;games&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span><span class="xml"></span><br><span class="xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><span class="xml"></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">       <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> </span></span><span class="xquery">&#123;</span><br><span class="xquery">          <span class="hljs-built_in"> name</span>:<span class="hljs-string">&#x27;Category&#x27;</span>,           </span><br><span class="xquery">            props:[<span class="hljs-string">&#x27;title&#x27;</span>],          </span><br><span class="xquery">            //数据在子组件自身            </span><br><span class="xquery">             data() &#123;          </span><br><span class="xquery">                <span class="hljs-keyword">return</span> &#123;</span><br><span class="xquery">                    games:[<span class="hljs-string">&#x27;红色警戒</span></span><br><span class="hljs-string"><span class="xquery">                    线&#x27;</span>,<span class="hljs-string">&#x27;劲舞团&#x27;</span>,<span class="hljs-string">&#x27;超级玛丽&#x27;</span>]</span><br><span class="xquery">            </span><br><span class="xquery">                &#125;</span><span class="xml"></span><br><span class="xml">           &#125;,</span><br><span class="xml">          &#125;</span><br><span class="xml"> <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure></li>
+<h2 id="7-localStorage-sessionStorage"><a href="#7-localStorage-sessionStorage" class="headerlink" title="7. localStorage/ sessionStorage"></a>7. localStorage/ sessionStorage</h2><p>we can read date by window.localStorage.getItem(key) and save data by window.localStorage.setItem(key,value). Remember to use JSON.parse() and JSON.stringify()</p>
+<h2 id="8-slot"><a href="#8-slot" class="headerlink" title="8. slot"></a>8. slot</h2><ol>
+<li>默认插槽：<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">父组件中：
+        &lt;Category&gt;
+           &lt;div&gt;html结构1&lt;&#x2F;div&gt;
+        &lt;&#x2F;Category&gt;
+子组件中：
+        &lt;template&gt;
+            &lt;div&gt;
+               &lt;!-- 定义插槽 --&gt;
+               &lt;slot&gt;插槽默认内容...&lt;&#x2F;slot&gt;
+            &lt;&#x2F;div&gt;
+        &lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li>具名插槽：<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">父组件中：
+        &lt;Category&gt;
+            &lt;template slot&#x3D;&quot;center&quot;&gt;
+              &lt;div&gt;html结构1&lt;&#x2F;div&gt;
+            &lt;&#x2F;template&gt;
+
+            &lt;template v-slot:footer&gt;
+               &lt;div&gt;html结构2&lt;&#x2F;div&gt;
+            &lt;&#x2F;template&gt;
+        &lt;&#x2F;Category&gt;
+子组件中：
+        &lt;template&gt;
+            &lt;div&gt;
+               &lt;!-- 定义插槽 --&gt;
+               &lt;slot name&#x3D;&quot;center&quot;&gt;插槽默认内容...&lt;&#x2F;slot&gt;
+               &lt;slot name&#x3D;&quot;footer&quot;&gt;插槽默认内容...&lt;&#x2F;slot&gt;
+            &lt;&#x2F;div&gt;
+        &lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li>作用域插槽：<span style="color:red">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。</span>（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">父组件中：
+&lt;Category&gt;
+&lt;template scope&#x3D;&quot;scopeData&quot;&gt;
+&lt;!-- 生成的是ul列表 --&gt;
+&lt;ul&gt;
+&lt;li v-for&#x3D;&quot;g in scopeData.games&quot; :key&#x3D;&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;template&gt;
+&lt;&#x2F;Category&gt;
+         
+&lt;Category&gt;
+&lt;template slot-scope&#x3D;&quot;scopeData&quot;&gt;
+&lt;!-- 生成的是h4标题 --&gt;
+&lt;h4 v-for&#x3D;&quot;g in scopeData.games&quot; :key&#x3D;&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;&#x2F;h4&gt;
+&lt;&#x2F;template&gt;
+&lt;&#x2F;Category&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">子组件中：  
+  &lt;template&gt;
+        &lt;div&gt;
+           &lt;slot :games&#x3D;&quot;games&quot;&gt;&lt;&#x2F;slot&gt;
+        &lt;&#x2F;div&gt;
+  &lt;&#x2F;template&gt;
+  &lt;script&gt;
+       export default &#123;
+           name:&#39;Category&#39;,           
+            props:[&#39;title&#39;],          
+            &#x2F;&#x2F;数据在子组件自身            
+             data() &#123;          
+                return &#123;
+                    games:[&#39;红色警戒
+                    线&#39;,&#39;劲舞团&#39;,&#39;超级玛丽&#39;]
+            
+                &#125;
+           &#125;,
+          &#125;
+ &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 </ol>
 
             </div>
@@ -311,18 +790,13 @@
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Vue/">Vue</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
                       <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>
                     
                   </div>
                 
@@ -333,12 +807,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2021/10/01/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">React脚手架配置代理总结 Proxy Setting in React For CORS</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/08/27/responsive-layout/">
-                        <span class="hidden-mobile">Respositive Design</span>
+                      <a href="/2021/09/07/%E8%A7%86%E5%B7%AE%E6%BB%9A%E5%8A%A8/">
+                        <span class="hidden-mobile">视差滚动 --- Parallax Scrolling</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -447,6 +927,8 @@
 
 
 
+  
+    
   
 
 
