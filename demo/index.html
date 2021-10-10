@@ -16,24 +16,24 @@
   <meta name="description" content="">
   <meta name="author" content="Nancy">
   <meta name="keywords" content="">
-  <meta name="description" content="Project         Demo         Project         Demo                   Game 2048                  Hit                            Clock                  Shop">
+  <meta name="description" content="Document              .wrapper{             display: grid;             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;         }         .card{">
 <meta property="og:type" content="website">
-<meta property="og:title" content="demo">
+<meta property="og:title" content="page.title">
 <meta property="og:url" content="http://example.com/demo/index.html">
 <meta property="og:site_name" content="Nancy&#39;s Blog">
-<meta property="og:description" content="Project         Demo         Project         Demo                   Game 2048                  Hit                            Clock                  Shop">
+<meta property="og:description" content="Document              .wrapper{             display: grid;             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;         }         .card{">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/demo/gif/2048_SparkVideo.gif">
 <meta property="og:image" content="http://example.com/demo/gif/hit.gif">
 <meta property="og:image" content="http://example.com/demo/gif/clock.gif">
-<meta property="og:image" content="http://example.com/demo/gif/shop_SparkVideo.gif">
-<meta property="article:published_time" content="2021-10-06T07:27:27.000Z">
-<meta property="article:modified_time" content="2021-10-06T12:15:29.491Z">
+<meta property="og:image" content="http://example.com/demo/gif/exchange.gif">
+<meta property="article:published_time" content="2021-10-10T11:21:52.844Z">
+<meta property="article:modified_time" content="2021-10-10T11:21:52.844Z">
 <meta property="article:author" content="Nancy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/demo/gif/2048_SparkVideo.gif">
   
-  <title>demo - Nancy&#39;s Blog</title>
+  <title>page.title - Nancy&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="demo">
+            <span class="h2" id="subtitle" title="page.title">
               
             </span>
 
@@ -214,26 +214,69 @@
                 
 
 <article class="page-content">
-  <table border="1">
-    <tr>
-        <th width="150px" height = '50px' align='center' valign="middle">Project</th>
-        <th  align='center' valign="middle">Demo</th>
-        <th width="150px"  align='center' valign="middle">Project</th>
-        <th  align='center' valign="middle">Demo</th>
-    </tr>
-    <tr>
-        <td  align='center' valign="middle"><a href = 'https://nancyduo.github.io/Game2048/' >Game 2048</a></td>
-        <td><a href = 'https://nancyduo.github.io/Game2048/' ><img src="./gif/2048_SparkVideo.gif" srcset="/img/loading.gif" lazyload width="200px" height='250px'></a></td>
-        <td  align='center' valign="middle"><a href = 'https://nancyduo.github.io/hit-him-game' >Hit</a></td>
-        <td><a href = 'https://nancyduo.github.io/hit-him-game' ><img src="./gif/hit.gif" srcset="/img/loading.gif" lazyload width="200px" height='250px'></td>
-    </tr>
-    <tr>
-        <td  align='center' valign="middle"><a href = 'https://nancyduo.github.io/clock'>Clock</a></td>
-        <td><a href = 'https://nancyduo.github.io/clock'><img src="./gif/clock.gif" srcset="/img/loading.gif" lazyload width="200px" height='250px'></a></td>
-        <td  align='center' valign="middle"><a href = 'https://github.com/NancyDuo/vueshop'>Shop</a></td>
-        <td><a href = 'https://github.com/NancyDuo/vueshop'><img src="./gif/shop_SparkVideo.gif" srcset="/img/loading.gif" lazyload width="300px" height='200px'></a></td>
-    </tr>
-</table>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+        }
+        .card{
+            width: 300px;
+            height: 350px;
+            text-align: center;
+            border: 5px solid rgb(170, 159, 159);
+            border-radius: 5%;
+            box-shadow: 0 0 5px 5px rgb(184, 180, 180);
+            margin: 30px 0px;
+        }
+        .card-img{
+            width: 300px;
+            height: 340px;
+            border-radius: 4% ;
+        }
+        /* span{
+            margin: 15px;
+            display: block;
+            font-size: 20px;
+        } */
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <div class="card">
+        <a href = 'https://nancyduo.github.io/Game2048/' >
+        <img class = 'card-img' src="./gif/2048_SparkVideo.gif" srcset="/img/loading.gif" lazyload>
+        <!-- <span>Game 2048</a></span> -->
+        </a>   
+    </div>
+    <div class="card">
+        <a href = 'https://nancyduo.github.io/hit-him-game' >
+        <img class = 'card-img' src="./gif/hit.gif" srcset="/img/loading.gif" lazyload>
+        <!-- <span>Hit</a></span> -->
+        </a>   
+    </div>
+    <div class="card">
+        <a href = 'https://nancyduo.github.io/clock' >
+        <img class = 'card-img' src="./gif/clock.gif" srcset="/img/loading.gif" lazyload>
+        <!-- <span>Clock</a></span> -->
+        </a>   
+    </div>
+    <div class="card" >
+        <a href = 'https://nancyduo.github.io/currency-exchange' >
+        <img class = 'card-img' src="./gif/exchange.gif" srcset="/img/loading.gif" lazyload>
+        <!-- <span>Vue Shop</a></span> -->
+        </a>   
+    </div>
+    </div>
+
+</body>
+</html>
 
   
 </article>
