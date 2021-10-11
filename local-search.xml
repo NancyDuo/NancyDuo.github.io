@@ -4,6 +4,48 @@
   
   
   <entry>
+    <title>React-Redux</title>
+    <link href="/2021/10/11/React-Redux/"/>
+    <url>/2021/10/11/React-Redux/</url>
+    
+    <content type="html"><![CDATA[<p>React-Redux is different from Redux which is build from React, while Redux is a plugin and you can use it in Vue also.</p><h3 id="在index-js-中设置provider-传递store给App下所有子组件"><a href="#在index-js-中设置provider-传递store给App下所有子组件" class="headerlink" title="在index js 中设置provider 传递store给App下所有子组件"></a>在index js 中设置provider 传递store给App下所有子组件</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React from &#39;react&#39;;import ReactDOM from &#39;react-dom&#39;;import App from &#39;.&#x2F;App&#39;;import store from &#39;.&#x2F;components&#x2F;redux&#x2F;store.jsx&#39;import &#123;Provider&#125; from &#39;react-redux&#39;ReactDOM.render(&lt;Provider store&#x3D;&#123;store&#125;&gt;&lt;App&#x2F;&gt;&lt;&#x2F;Provider&gt;,document.getElementById(&#39;root&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="在components下建containers和redux文件如下，也可把reducer再汇总成一个，只暴露index-reducer"><a href="#在components下建containers和redux文件如下，也可把reducer再汇总成一个，只暴露index-reducer" class="headerlink" title="在components下建containers和redux文件如下，也可把reducer再汇总成一个，只暴露index-reducer"></a>在components下建containers和redux文件如下，也可把reducer再汇总成一个，只暴露index-reducer</h3><p><img src="/img/redux.png" alt="redux"></p><h3 id="在store中引入reducer，使用中间件"><a href="#在store中引入reducer，使用中间件" class="headerlink" title="在store中引入reducer，使用中间件"></a>在store中引入reducer，使用中间件</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;引入createStore，专门用于创建redux中最为核心的store对象import &#123;createStore,applyMiddleware,combineReducers&#125; from &#39;redux&#39;&#x2F;&#x2F;引入reducerimport addReducer from &#39;.&#x2F;reducers&#x2F;add-reducer&#39;import personReducer from &#39;.&#x2F;reducers&#x2F;person-reducer&#39;&#x2F;&#x2F;引入redux-thunk，用于支持异步actionimport thunk from &#39;redux-thunk&#39;const allReducers &#x3D; combineReducers(&#123;adds:addReducer,persons:personReducer&#125;)&#x2F;&#x2F;暴露storeexport default createStore(allReducers,applyMiddleware(thunk))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="在action中-pass-type-and-data-to-reducer"><a href="#在action中-pass-type-and-data-to-reducer" class="headerlink" title="在action中 pass type and data to reducer"></a>在action中 pass type and data to reducer</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">export const createAddPersonAction &#x3D;(personObj)&#x3D;&gt;(&#123;type:&#39;addPerson&#39;,data:personObj&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">export function createIncrementAction(data)&#123;    return &#123;type:&#39;increment&#39;,data&#125;&#125;export const createDecrementAction &#x3D; data &#x3D;&gt;(&#123;type:&#39;decrement&#39;,data&#125;)export const createIncrementAsyncAction &#x3D; (data,syncTime)&#x3D;&gt; &#123;    return (dispatch)&#x3D;&gt;&#123;setTimeout(()&#x3D;&gt;&#123;dispatch(createIncrementAction(data))&#125;,syncTime)&#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="在reducer接收previous-value-和action，action中有type和打他，再加工数据"><a href="#在reducer接收previous-value-和action，action中有type和打他，再加工数据" class="headerlink" title="在reducer接收previous value 和action，action中有type和打他，再加工数据"></a>在reducer接收previous value 和action，action中有type和打他，再加工数据</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const init &#x3D; [&#123;id:&#39;001&#39;,name:&#39;zhang&#39;,age:10&#125;]export default function personReducer(pre,action)&#123;    const &#123;type,data&#125; &#x3D; action    switch (type) &#123;        case &#39;addPerson&#39; :            return [data,...pre]            &#x2F;&#x2F;return pre.unshift(data) not working         default:            return init    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="在-container里通过connect中state接到数据，再通过props传递给UI"><a href="#在-container里通过connect中state接到数据，再通过props传递给UI" class="headerlink" title="在 container里通过connect中state接到数据，再通过props传递给UI"></a>在 container里通过connect中state接到数据，再通过props传递给UI</h3><p>In Person.jsx container</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;import &#123;connect&#125; from &#39;react-redux&#39;import &#123;createAddPersonAction&#125; from &#39;..&#x2F;redux&#x2F;actions&#x2F;person-action&#39;class Person extends Component &#123;    addPerson&#x3D;()&#x3D;&gt;&#123;        const name &#x3D; this.nameNode.value        const age &#x3D; this.ageNode.value        const personObj &#x3D; &#123;id:Date.now(),name,age&#125;        this.props.addPersons(personObj)    &#125;    render() &#123;        return (            &lt;div&gt;                &lt;h1&gt;Up: &#123;this.props.sum&#125;&lt;&#x2F;h1&gt;                &lt;input ref&#x3D;&#123;c&#x3D;&gt;&#123;this.nameNode &#x3D; c&#125;&#125; type&#x3D;&quot;text&quot; placeholder&#x3D;&#39;name&#39; &#x2F;&gt;                &lt;input ref&#x3D;&#123;c&#x3D;&gt;&#123;this.ageNode&#x3D;c&#125;&#125; type&#x3D;&quot;text&quot; placeholder&#x3D;&#39;age&#39; &#x2F;&gt;                &lt;button onClick&#x3D;&#123;this.addPerson&#125;&gt;add&lt;&#x2F;button&gt;                &lt;ul&gt;                   &#123;this.props.people.map(p&#x3D;&gt;&#123;                       return &lt;li key&#x3D;&#123;p.id&#125;&gt;                           &#123;p.name&#125; --- &#123;p.age&#125;                       &lt;&#x2F;li&gt;                   &#125;)&#125;                &lt;&#x2F;ul&gt;            &lt;&#x2F;div&gt;        )    &#125;&#125;export default connect(    state &#x3D;&gt;(&#123;people:state.persons,sum:state.adds&#125;),&#123;        addPersons:createAddPersonAction    &#125;)(Person)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>In Add.jsx container</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;import &#123;connect&#125; from &#39;react-redux&#39;import &#123; createIncrementAction,createDecrementAction,createIncrementAsyncAction&#125; from &#39;..&#x2F;redux&#x2F;actions&#x2F;add-action&#39;class Add extends Component &#123;    increment&#x3D;()&#x3D;&gt;&#123;        const&#123;value&#125; &#x3D; this.selectNum        this.props.add(value*1)    &#125;    decrement&#x3D;()&#x3D;&gt;&#123;              const&#123;value&#125; &#x3D; this.selectNum        this.props.minus(value*1)     &#125;     incrementAsync&#x3D;()&#x3D;&gt;&#123;        const &#123;value&#125; &#x3D; this.selectNum        this.props.addAsync(value*1,500)     &#125;        render() &#123;        return (            &lt;div&gt;                &lt;h1&gt;Total is &#123;this.props.total&#125;&lt;&#x2F;h1&gt;                &lt;h1&gt;Up is &#123;this.props.people.length&#125;&lt;&#x2F;h1&gt;                &lt;select ref&#x3D;&#123;c&#x3D;&gt;&#123;this.selectNum&#x3D;c&#125;&#125;&gt;                    &lt;option value&#x3D;&#39;1&#39;&gt;1&lt;&#x2F;option&gt;                    &lt;option value&#x3D;&quot;2&quot;&gt;2&lt;&#x2F;option&gt;                    &lt;option value&#x3D;&quot;3&quot;&gt;3&lt;&#x2F;option&gt;                &lt;&#x2F;select&gt;                &lt;button onClick&#x3D;&#123;this.increment&#125;&gt;add&lt;&#x2F;button&gt;                &lt;button onClick&#x3D;&#123;this.decrement&#125;&gt;minuse&lt;&#x2F;button&gt;                &lt;button onClick&#x3D;&#123;this.incrementAsync&#125;&gt;asyncronus add&lt;&#x2F;button&gt;            &lt;&#x2F;div&gt;        )    &#125;&#125;export default connect(        state &#x3D;&gt; (&#123;total:state.adds,people:state.persons&#125;),        &#123;            add:createIncrementAction,            minus:createDecrementAction,            addAsync:createIncrementAsyncAction        &#125;    )(Add)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>React</tag>
+      
+      <tag>React-Redux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Redux</title>
+    <link href="/2021/10/11/Redux/"/>
+    <url>/2021/10/11/Redux/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Redux精简版-Redux-Without-Action"><a href="#Redux精简版-Redux-Without-Action" class="headerlink" title="Redux精简版 Redux Without Action"></a>Redux精简版 Redux Without Action</h2><p>建立:</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">- redux- store.js  - xxx_reducer.js<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><p>在store.js：<br>1)引入redux中的createStore函数，创建一个store<br>2)createStore调用时要传入一个为其服务的reducer<br>3)暴露store对象</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import &#123;createStore&#125; from &#39;redux&#39;import reducer from &#39;.&#x2F;reducer&#39;export default createStore(reducer)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><p>xxx_reducer.js：<br>1)reducer的本质是一个函数，接收：preState,action，返回加工后的状态<br>2)reducer有两个作用：初始化状态，加工状态<br>3)reducer被第一次调用时，是store自动触发的，传递的preState是undefined,传递的action是:{type:‘@@REDUX/INIT_a.2.b.4}</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">export default function reducer(pre,action)&#123;    const &#123;type,data&#125; &#x3D; action    switch (type) &#123;        case &#39;increment&#39;:            return pre + data                   case &#39;decrement&#39;:            return pre - data          default:            return 0           &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>在index.js中监测store中状态的改变，一旦发生改变重新渲染 ‘<App/>‘<br>备注：redux只负责管理状态,状态的改变驱动着页面的展示要自己写。</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;import store from &#39;.&#x2F;store&#39;export default class add extends Component &#123;componentDidMount()&#123;    store.subscribe(()&#x3D;&gt;&#123;        this.setState(&#123;&#125;)    &#125;)&#125;    increment&#x3D;()&#x3D;&gt;&#123;       const&#123;value&#125; &#x3D; this.selectNum        store.dispatch(&#123;            type:&#39;increment&#39;,            data: value*1        &#125;)    &#125;    decrement&#x3D;()&#x3D;&gt;&#123;        const&#123;value&#125; &#x3D; this.selectNum        store.dispatch(&#123;            type:&#39;decrement&#39;,            data: value*1        &#125;)     &#125;      render() &#123;        return (            &lt;div&gt;                &lt;h1&gt;Total is &#123;store.getState()&#125;&lt;&#x2F;h1&gt;                &lt;select ref&#x3D;&#123;c&#x3D;&gt;&#123;this.selectNum&#x3D;c&#125;&#125;&gt;                    &lt;option value&#x3D;&#39;1&#39;&gt;1&lt;&#x2F;option&gt;                    &lt;option value&#x3D;&quot;2&quot;&gt;2&lt;&#x2F;option&gt;                    &lt;option value&#x3D;&quot;3&quot;&gt;3&lt;&#x2F;option&gt;                &lt;&#x2F;select&gt;                &lt;button onClick&#x3D;&#123;this.increment&#125;&gt;add&lt;&#x2F;button&gt;                &lt;button onClick&#x3D;&#123;this.decrement&#125;&gt;minuse&lt;&#x2F;button&gt;            &lt;&#x2F;div&gt;        )    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h2 id="Redux异步Action版-Async-function-in-Redux"><a href="#Redux异步Action版-Async-function-in-Redux" class="headerlink" title="Redux异步Action版 Async function in Redux"></a>Redux异步Action版 Async function in Redux</h2><p>何时需要异步action：想要对状态进行操作，但是具体的数据靠异步任务返回。<br>具体编码：<br>1)yarn add redux-thunk，并配置在store中</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">store.js&#x2F;&#x2F;引入createStore，专门用于创建redux中最为核心的store对象import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;&#x2F;&#x2F;引入为Count组件服务的reducerimport countReducer from &#39;.&#x2F;count_reducer&#39;&#x2F;&#x2F;引入redux-thunk，用于支持异步actionimport thunk from &#39;redux-thunk&#39;&#x2F;&#x2F;暴露storeexport default createStore(countReducer,applyMiddleware(thunk))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>2)创建action的函数不再返回一般对象，而是一个函数，该函数中写异步任务.</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#96;&#96;&#96;&#x2F;&#x2F; index.jsimport React from &#39;react&#39;;import ReactDOM from &#39;react-dom&#39;;&#x2F;&#x2F; import &#123; BrowserRouter &#125; from &#39;react-router-dom&#39;;import &#39;.&#x2F;index.css&#39;;import App from &#39;.&#x2F;App&#39;;&#x2F;&#x2F; import reportWebVitals from &#39;.&#x2F;reportWebVitals&#39;;import store from &#39;.&#x2F;components&#x2F;increment&#x2F;store&#39;store.subscribe(()&#x3D;&gt;&#123;ReactDOM.render(&lt;App&#x2F;&gt;,document.getElementById(&#39;root&#39;))&#125;)ReactDOM.render(  &lt;App &#x2F;&gt;,  document.getElementById(&#39;root&#39;));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>3)调用action </p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">increment&#x3D;()&#x3D;&gt;&#123;   const&#123;value&#125; &#x3D; this.selectNum    &#x2F;&#x2F; without action:    &#x2F;&#x2F;store.dispatch(&#123;    &#x2F;&#x2F;     type:&#39;increment&#39;,    &#x2F;&#x2F;     data: value*1    &#x2F;&#x2F; &#125;)    store.dispatch(createIncrementAction(value*1))&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>4)异步任务有结果后，分发一个同步的action去真正操作数据。</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">action.jsexport function createIncrementAction(data)&#123;    return &#123;type:&#39;increment&#39;,data&#125;&#125;export const createDecrementAction &#x3D; data &#x3D;&gt;(&#123;type:&#39;decrement&#39;,data&#125;)export const createIncrementAsyncAction &#x3D; (data,syncTime)&#x3D;&gt; &#123;    return (dispatch)&#x3D;&gt;&#123;setTimeout(()&#x3D;&gt;&#123;dispatch(createIncrementAction(data))&#125;,syncTime)&#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>React</tag>
+      
+      <tag>Redux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>封装Axios --- Axios Module</title>
     <link href="/2021/10/10/%E5%B0%81%E8%A3%85axios/"/>
     <url>/2021/10/10/%E5%B0%81%E8%A3%85axios/</url>
@@ -14,9 +56,9 @@
     
     <tags>
       
-      <tag>Vue</tag>
-      
       <tag>Axios</tag>
+      
+      <tag>Vue</tag>
       
     </tags>
     
@@ -174,27 +216,6 @@
   
   
   <entry>
-    <title>BFC</title>
-    <link href="/2021/07/01/BFC/"/>
-    <url>/2021/07/01/BFC/</url>
-    
-    <content type="html"><![CDATA[<h2 id="BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："><a href="#BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：" class="headerlink" title="BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："></a>BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：</h2><ul><li>内部的盒子会在垂直方向上一个接一个的放置</li><li>对于同一个BFC的俩个相邻的盒子的margin会发生重叠，与方向无关。</li><li>每个元素的左外边距与包含块的左边界相接触（从左到右），即使浮动元素也是如此</li><li>BFC的区域不会与float的元素区域重叠</li><li>计算BFC的高度时，浮动子元素也参与计算</li><li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然</li><li>BFC目的是形成一个相对于外界完全独立的空间，让内部的子元素不会影响到外部的元素</li></ul><h2 id="触发BFC的条件包含不限于："><a href="#触发BFC的条件包含不限于：" class="headerlink" title="触发BFC的条件包含不限于："></a>触发BFC的条件包含不限于：</h2><ul><li>根元素，即HTML元素</li><li>浮动元素：float值为left、right</li><li>overflow值不为 visible，为 auto、scroll、hidden</li><li>display的值为inline-block、inltable-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid</li><li>position的值为absolute或fixed</li></ul>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>CSS</tag>
-      
-      <tag>Layout</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>React Router</title>
     <link href="/2021/07/01/React-Router/"/>
     <url>/2021/07/01/React-Router/</url>
@@ -210,6 +231,27 @@
       <tag>Router</tag>
       
       <tag>路由</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>BFC</title>
+    <link href="/2021/07/01/BFC/"/>
+    <url>/2021/07/01/BFC/</url>
+    
+    <content type="html"><![CDATA[<h2 id="BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："><a href="#BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：" class="headerlink" title="BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："></a>BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：</h2><ul><li>内部的盒子会在垂直方向上一个接一个的放置</li><li>对于同一个BFC的俩个相邻的盒子的margin会发生重叠，与方向无关。</li><li>每个元素的左外边距与包含块的左边界相接触（从左到右），即使浮动元素也是如此</li><li>BFC的区域不会与float的元素区域重叠</li><li>计算BFC的高度时，浮动子元素也参与计算</li><li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然</li><li>BFC目的是形成一个相对于外界完全独立的空间，让内部的子元素不会影响到外部的元素</li></ul><h2 id="触发BFC的条件包含不限于："><a href="#触发BFC的条件包含不限于：" class="headerlink" title="触发BFC的条件包含不限于："></a>触发BFC的条件包含不限于：</h2><ul><li>根元素，即HTML元素</li><li>浮动元素：float值为left、right</li><li>overflow值不为 visible，为 auto、scroll、hidden</li><li>display的值为inline-block、inltable-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid</li><li>position的值为absolute或fixed</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>CSS</tag>
+      
+      <tag>Layout</tag>
       
     </tags>
     
