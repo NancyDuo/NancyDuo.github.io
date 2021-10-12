@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#7D5A50">
+  <meta name="description" content="">
+  <meta name="author" content="Nancy">
+  <meta name="keywords" content="">
+  <meta name="description" content="路由1.基本使用 安装vue-router，命令：npm i vue-router  应用插件：Vue.use(VueRouter)  编写router配置项: &#x2F;&#x2F;引入VueRouter import VueRouter from &#39;vue-router&#39; &#x2F;&#x2F;引入组件 import About from &#39;..&#x2F;components&#x2F;About&#39; import Home from &#39;..&#x2F;co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue路由 --- Vue Route">
+<meta property="og:url" content="http://example.com/2021/10/12/Vue%E8%B7%AF%E7%94%B1-Vue%20Route/index.html">
+<meta property="og:site_name" content="Nancy&#39;s Blog">
+<meta property="og:description" content="路由1.基本使用 安装vue-router，命令：npm i vue-router  应用插件：Vue.use(VueRouter)  编写router配置项: &#x2F;&#x2F;引入VueRouter import VueRouter from &#39;vue-router&#39; &#x2F;&#x2F;引入组件 import About from &#39;..&#x2F;components&#x2F;About&#39; import Home from &#39;..&#x2F;co">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-12T03:28:54.199Z">
+<meta property="article:modified_time" content="2021-10-12T03:31:57.801Z">
+<meta property="article:author" content="Nancy">
+<meta property="article:tag" content="Router">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Vue路由 --- Vue Route - Nancy&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-dark.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Nancy Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/demo/">
+                <i class="iconfont icon-link-fill"></i>
+                Demo
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/er.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vue路由 --- Vue Route">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Nancy
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-12 14:28" pubdate>
+        October 12, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5k words
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 minutes
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> times
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue路由 --- Vue Route</h1>
+            
+            <div class="markdown-body">
+              <h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><h3 id="1-基本使用"><a href="#1-基本使用" class="headerlink" title="1.基本使用"></a>1.基本使用</h3><ol>
+<li><p>安装vue-router，命令：<code>npm i vue-router</code></p>
+</li>
+<li><p>应用插件：<code>Vue.use(VueRouter)</code></p>
+</li>
+<li><p>编写router配置项:</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//引入VueRouter</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token comment">//引入组件</span>
+<span class="token keyword">import</span> About <span class="token keyword">from</span> <span class="token string">'../components/About'</span>
+<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">'../components/Home'</span>
+
+<span class="token comment">//创建router实例对象，去管理一组一组的路由规则</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+	routes<span class="token operator">:</span><span class="token punctuation">[</span>
+		<span class="token punctuation">&#123;</span>
+			path<span class="token operator">:</span><span class="token string">'/about'</span><span class="token punctuation">,</span>
+			component<span class="token operator">:</span>About
+		<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#123;</span>
+			path<span class="token operator">:</span><span class="token string">'/home'</span><span class="token punctuation">,</span>
+			component<span class="token operator">:</span>Home
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment">//暴露router</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> router<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>实现切换（active-class可配置高亮样式）</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;router-link active-class&#x3D;&quot;active&quot; to&#x3D;&quot;&#x2F;about&quot;&gt;About&lt;&#x2F;router-link&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
+<li><p>指定展示位置</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;router-view&gt;&lt;&#x2F;router-view&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
+</ol>
+<h3 id="2-几个注意点"><a href="#2-几个注意点" class="headerlink" title="2.几个注意点"></a>2.几个注意点</h3><ol>
+<li>路由组件通常存放在<code>pages</code>文件夹，一般组件通常存放在<code>components</code>文件夹。</li>
+<li>通过切换，“隐藏”了的路由组件，默认是被销毁掉的，需要的时候再去挂载。</li>
+<li>每个组件都有自己的<code>$route</code>属性，里面存储着自己的路由信息。</li>
+<li>整个应用只有一个router，可以通过组件的<code>$router</code>属性获取到。</li>
+</ol>
+<h3 id="3-多级路由（多级路由）"><a href="#3-多级路由（多级路由）" class="headerlink" title="3.多级路由（多级路由）"></a>3.多级路由（多级路由）</h3><ol>
+<li><p>配置路由规则，使用children配置项：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">routes<span class="token operator">:</span><span class="token punctuation">[</span>
+	<span class="token punctuation">&#123;</span>
+		path<span class="token operator">:</span><span class="token string">'/about'</span><span class="token punctuation">,</span>
+		component<span class="token operator">:</span>About<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#123;</span>
+		path<span class="token operator">:</span><span class="token string">'/home'</span><span class="token punctuation">,</span>
+		component<span class="token operator">:</span>Home<span class="token punctuation">,</span>
+		children<span class="token operator">:</span><span class="token punctuation">[</span> <span class="token comment">//通过children配置子级路由</span>
+			<span class="token punctuation">&#123;</span>
+				path<span class="token operator">:</span><span class="token string">'news'</span><span class="token punctuation">,</span> <span class="token comment">//此处一定不要写：/news</span>
+				component<span class="token operator">:</span>News
+			<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+			<span class="token punctuation">&#123;</span>
+				path<span class="token operator">:</span><span class="token string">'message'</span><span class="token punctuation">,</span><span class="token comment">//此处一定不要写：/message</span>
+				component<span class="token operator">:</span>Message
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>跳转（要写完整路径）：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;router-link to&#x3D;&quot;&#x2F;home&#x2F;news&quot;&gt;News&lt;&#x2F;router-link&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
+</ol>
+<h3 id="4-路由的query参数"><a href="#4-路由的query参数" class="headerlink" title="4.路由的query参数"></a>4.路由的query参数</h3><ol>
+<li><p>传递参数</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 跳转并携带query参数，to的字符串写法 --&gt;
+&lt;router-link :to&#x3D;&quot;&#x2F;home&#x2F;message&#x2F;detail?id&#x3D;666&amp;title&#x3D;你好&quot;&gt;跳转&lt;&#x2F;router-link&gt;
+				
+&lt;!-- 跳转并携带query参数，to的对象写法 --&gt;
+&lt;router-link 
+	:to&#x3D;&quot;&#123;
+		path:&#39;&#x2F;home&#x2F;message&#x2F;detail&#39;,
+		query:&#123;
+		   id:666,
+            title:&#39;你好&#39;
+		&#125;
+	&#125;&quot;
+&gt;跳转&lt;&#x2F;router-link&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>接收参数：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>id
+$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>title<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li>
+</ol>
+<h3 id="5-命名路由"><a href="#5-命名路由" class="headerlink" title="5.命名路由"></a>5.命名路由</h3><ol>
+<li><p>作用：可以简化路由的跳转。</p>
+</li>
+<li><p>如何使用</p>
+<ol>
+<li><p>给路由命名：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#123;
+	path:&#39;&#x2F;demo&#39;,
+	component:Demo,
+	children:[
+		&#123;
+			path:&#39;test&#39;,
+			component:Test,
+			children:[
+				&#123;
+                      name:&#39;hello&#39; &#x2F;&#x2F;给路由命名
+					path:&#39;welcome&#39;,
+					component:Hello,
+				&#125;
+			]
+		&#125;
+	]
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>简化跳转：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!--简化前，需要写完整的路径 --&gt;
+&lt;router-link to&#x3D;&quot;&#x2F;demo&#x2F;test&#x2F;welcome&quot;&gt;跳转&lt;&#x2F;router-link&gt;
+
+&lt;!--简化后，直接通过名字跳转 --&gt;
+&lt;router-link :to&#x3D;&quot;&#123;name:&#39;hello&#39;&#125;&quot;&gt;跳转&lt;&#x2F;router-link&gt;
+
+&lt;!--简化写法配合传递参数 --&gt;
+&lt;router-link 
+	:to&#x3D;&quot;&#123;
+		name:&#39;hello&#39;,
+		query:&#123;
+		   id:666,
+            title:&#39;你好&#39;
+		&#125;
+	&#125;&quot;
+&gt;跳转&lt;&#x2F;router-link&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+<h3 id="6-路由的params参数"><a href="#6-路由的params参数" class="headerlink" title="6.路由的params参数"></a>6.路由的params参数</h3><ol>
+<li><p>配置路由，声明接收params参数</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
+	path<span class="token operator">:</span><span class="token string">'/home'</span><span class="token punctuation">,</span>
+	component<span class="token operator">:</span>Home<span class="token punctuation">,</span>
+	children<span class="token operator">:</span><span class="token punctuation">[</span>
+		<span class="token punctuation">&#123;</span>
+			path<span class="token operator">:</span><span class="token string">'news'</span><span class="token punctuation">,</span>
+			component<span class="token operator">:</span>News
+		<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#123;</span>
+			component<span class="token operator">:</span>Message<span class="token punctuation">,</span>
+			children<span class="token operator">:</span><span class="token punctuation">[</span>
+				<span class="token punctuation">&#123;</span>
+					name<span class="token operator">:</span><span class="token string">'xiangqing'</span><span class="token punctuation">,</span>
+					path<span class="token operator">:</span><span class="token string">'detail/:id/:title'</span><span class="token punctuation">,</span> <span class="token comment">//使用占位符声明接收params参数</span>
+					component<span class="token operator">:</span>Detail
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">]</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>传递参数</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;!-- 跳转并携带params参数，to的字符串写法 --&gt;
+&lt;router-link :to&#x3D;&quot;&#x2F;home&#x2F;message&#x2F;detail&#x2F;666&#x2F;你好&quot;&gt;跳转&lt;&#x2F;router-link&gt;
+				
+&lt;!-- 跳转并携带params参数，to的对象写法 --&gt;
+&lt;router-link 
+	:to&#x3D;&quot;&#123;
+		name:&#39;xiangqing&#39;,
+		params:&#123;
+		   id:666,
+            title:&#39;你好&#39;
+		&#125;
+	&#125;&quot;
+&gt;跳转&lt;&#x2F;router-link&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<blockquote>
+<p>特别注意：路由携带params参数时，若使用to的对象写法，则不能使用path配置项，必须使用name配置！</p>
+</blockquote>
+</li>
+<li><p>接收参数：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">$route<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id
+$route<span class="token punctuation">.</span>params<span class="token punctuation">.</span>title<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li>
+</ol>
+<h3 id="7-路由的props配置"><a href="#7-路由的props配置" class="headerlink" title="7.路由的props配置"></a>7.路由的props配置</h3><p>​    作用：让路由组件更方便的收到参数</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
+	name<span class="token operator">:</span><span class="token string">'xiangqing'</span><span class="token punctuation">,</span>
+	path<span class="token operator">:</span><span class="token string">'detail/:id'</span><span class="token punctuation">,</span>
+	component<span class="token operator">:</span>Detail<span class="token punctuation">,</span>
+
+	<span class="token comment">//第一种写法：props值为对象，该对象中所有的key-value的组合最终都会通过props传给Detail组件</span>
+	<span class="token comment">// props:&#123;a:900&#125;</span>
+
+	<span class="token comment">//第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件</span>
+	<span class="token comment">// props:true</span>
+	
+	<span class="token comment">//第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件</span>
+	<span class="token function">props</span><span class="token punctuation">(</span><span class="token parameter">route</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+			id<span class="token operator">:</span>route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+			title<span class="token operator">:</span>route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>title
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="8-lt-router-link-gt-的replace属性"><a href="#8-lt-router-link-gt-的replace属性" class="headerlink" title="8.&lt;router-link&gt;的replace属性"></a>8.<code>&lt;router-link&gt;</code>的replace属性</h3><ol>
+<li>作用：控制路由跳转时操作浏览器历史记录的模式</li>
+<li>浏览器的历史记录有两种写入方式：分别为<code>push</code>和<code>replace</code>，<code>push</code>是追加历史记录，<code>replace</code>是替换当前记录。路由跳转时候默认为<code>push</code></li>
+<li>如何开启<code>replace</code>模式：<code>&lt;router-link replace .......&gt;News&lt;/router-link&gt;</code></li>
+</ol>
+<h3 id="9-编程式路由导航"><a href="#9-编程式路由导航" class="headerlink" title="9.编程式路由导航"></a>9.编程式路由导航</h3><ol>
+<li><p>作用：不借助<code>&lt;router-link&gt; </code>实现路由跳转，让路由跳转更加灵活</p>
+</li>
+<li><p>具体编码：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//$router的两个API</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+	name<span class="token operator">:</span><span class="token string">'xiangqing'</span><span class="token punctuation">,</span>
+		params<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+			id<span class="token operator">:</span>xxx<span class="token punctuation">,</span>
+			title<span class="token operator">:</span>xxx
+		<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+	name<span class="token operator">:</span><span class="token string">'xiangqing'</span><span class="token punctuation">,</span>
+		params<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+			id<span class="token operator">:</span>xxx<span class="token punctuation">,</span>
+			title<span class="token operator">:</span>xxx
+		<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//前进</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//后退</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//可前进也可后退</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+<h3 id="10-缓存路由组件"><a href="#10-缓存路由组件" class="headerlink" title="10.缓存路由组件"></a>10.缓存路由组件</h3><ol>
+<li><p>作用：让不展示的路由组件保持挂载，不被销毁。</p>
+</li>
+<li><p>具体编码：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;keep-alive include&#x3D;&quot;News&quot;&gt; 
+    &lt;router-view&gt;&lt;&#x2F;router-view&gt;
+&lt;&#x2F;keep-alive&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+<h3 id="11-两个新的生命周期钩子"><a href="#11-两个新的生命周期钩子" class="headerlink" title="11.两个新的生命周期钩子"></a>11.两个新的生命周期钩子</h3><ol>
+<li>作用：路由组件所独有的两个钩子，用于捕获路由组件的激活状态。</li>
+<li>具体名字：<ol>
+<li><code>activated</code>路由组件被激活时触发。</li>
+<li><code>deactivated</code>路由组件失活时触发。</li>
+</ol>
+</li>
+</ol>
+<h3 id="12-路由守卫"><a href="#12-路由守卫" class="headerlink" title="12.路由守卫"></a>12.路由守卫</h3><ol>
+<li><p>作用：对路由进行权限控制</p>
+</li>
+<li><p>分类：全局守卫、独享守卫、组件内守卫</p>
+</li>
+<li><p>全局守卫:</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//全局前置守卫：初始化时执行、每次路由切换前执行</span>
+router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span>from<span class="token punctuation">,</span>next</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'beforeEach'</span><span class="token punctuation">,</span>to<span class="token punctuation">,</span>from<span class="token punctuation">)</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>isAuth<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//判断当前路由是否需要进行权限控制</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'school'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'atguigu'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//权限控制的具体规则</span>
+			<span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//放行</span>
+		<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+			<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'暂无权限查看'</span><span class="token punctuation">)</span>
+			<span class="token comment">// next(&#123;name:'guanyu'&#125;)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+		<span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//放行</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment">//全局后置守卫：初始化时执行、每次路由切换后执行</span>
+router<span class="token punctuation">.</span><span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span><span class="token keyword">from</span></span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'afterEach'</span><span class="token punctuation">,</span>to<span class="token punctuation">,</span>from<span class="token punctuation">)</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> 
+		document<span class="token punctuation">.</span>title <span class="token operator">=</span> to<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>title <span class="token comment">//修改网页的title</span>
+	<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+		document<span class="token punctuation">.</span>title <span class="token operator">=</span> <span class="token string">'vue_test'</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>独享守卫:</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">beforeEnter</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span>from<span class="token punctuation">,</span>next</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'beforeEnter'</span><span class="token punctuation">,</span>to<span class="token punctuation">,</span>from<span class="token punctuation">)</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>isAuth<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//判断当前路由是否需要进行权限控制</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'school'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'atguigu'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+			<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'暂无权限查看'</span><span class="token punctuation">)</span>
+			<span class="token comment">// next(&#123;name:'guanyu'&#125;)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+		<span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>组件内守卫：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//进入守卫：通过路由规则，进入该组件时被调用</span>
+<span class="token function">beforeRouteEnter</span> <span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token comment">//离开守卫：通过路由规则，离开该组件时被调用</span>
+<span class="token function">beforeRouteLeave</span> <span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Router/">Router</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/12/Vuex/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vuex</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/12/Vue%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
+                        <span class="hidden-mobile">Vue组件通信 --- Transfer Data in Vue</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            Total 
+            <span id="busuanzi_value_site_pv"></span>
+             times
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            Total 
+            <span id="busuanzi_value_site_uv"></span>
+             people
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

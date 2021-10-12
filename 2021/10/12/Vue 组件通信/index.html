@@ -18,19 +18,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="1. props &#x2F; $emitThe following is showing the parent component passing data to child. &#x2F;&#x2F; parent &lt;template&gt;   &lt;div class&#x3D;&quot;section&quot;&gt;     &lt;com-article :articles&amp;#x3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组件通信 Transfer Data in Vue">
-<meta property="og:url" content="http://example.com/2021/09/27/transfer-data-vue/index.html">
+<meta property="og:title" content="Vue组件通信 --- Transfer Data in Vue">
+<meta property="og:url" content="http://example.com/2021/10/12/Vue%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/index.html">
 <meta property="og:site_name" content="Nancy&#39;s Blog">
 <meta property="og:description" content="1. props &#x2F; $emitThe following is showing the parent component passing data to child. &#x2F;&#x2F; parent &lt;template&gt;   &lt;div class&#x3D;&quot;section&quot;&gt;     &lt;com-article :articles&amp;#x3">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-26T14:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-09T11:44:14.434Z">
+<meta property="article:published_time" content="2021-10-12T03:20:00.596Z">
+<meta property="article:modified_time" content="2021-10-12T03:49:10.636Z">
 <meta property="article:author" content="Nancy">
 <meta property="article:tag" content="组件通信">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>组件通信 Transfer Data in Vue - Nancy&#39;s Blog</title>
+  <title>Vue组件通信 --- Transfer Data in Vue - Nancy&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -181,7 +181,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="组件通信 Transfer Data in Vue">
+            <span class="h2" id="subtitle" title="Vue组件通信 --- Transfer Data in Vue">
               
             </span>
 
@@ -196,8 +196,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-27 00:00" pubdate>
-        September 27, 2021 am
+      <time datetime="2021-10-12 14:20" pubdate>
+        October 12, 2021 pm
       </time>
     </span>
   
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      38 minutes
+      39 minutes
     </span>
   
 
@@ -253,7 +253,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">组件通信 Transfer Data in Vue</h1>
+            <h1 style="display: none">Vue组件通信 --- Transfer Data in Vue</h1>
             
             <div class="markdown-body">
               <h2 id="1-props-emit"><a href="#1-props-emit" class="headerlink" title="1. props / $emit"></a>1. props / $emit</h2><p>The following is showing the parent component passing data to child.</p>
@@ -460,7 +460,32 @@ export default &#123;
     &#125;
   &#125;
 &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<h2 id="5-eventBus"><a href="#5-eventBus" class="headerlink" title="5. eventBus"></a>5. eventBus</h2><p>create event-bus.js</p>
+<h2 id="5-全局事件总线（GlobalEventBus）"><a href="#5-全局事件总线（GlobalEventBus）" class="headerlink" title="5.全局事件总线（GlobalEventBus）"></a>5.全局事件总线（GlobalEventBus）</h2><ol>
+<li><p>一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。</p>
+</li>
+<li><p>安装全局事件总线：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+	<span class="token operator">...</span><span class="token operator">...</span>
+	<span class="token function">beforeCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$bus <span class="token operator">=</span> <span class="token keyword">this</span> <span class="token comment">//安装全局事件总线，$bus就是当前应用的vm</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>使用事件总线：</p>
+<ol>
+<li><p>接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，事件的<span style="color:red">回调留在A组件自身。</span></p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">methods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token function">demo</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">...</span><span class="token operator">...</span>
+<span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>$bus<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">'xxxx'</span><span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>demo<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>提供数据：<code>this.$bus.$emit(&#39;xxxx&#39;,数据)</code></p>
+</li>
+</ol>
+</li>
+<li><p>最好在beforeDestroy钩子中，用$off去解绑<span style="color:red">当前组件所用到的</span>事件。<br>create event-bus.js</p>
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; event-bus.js
 import Vue from &#39;vue&#39;
 export const EventBus &#x3D; new Vue()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
@@ -523,7 +548,9 @@ export default &#123;
   &#125;
 &#125;
 &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<h2 id="6-Vuex"><a href="#6-Vuex" class="headerlink" title="6. Vuex"></a>6. Vuex</h2><ul>
+<h2 id="6-Vuex"><a href="#6-Vuex" class="headerlink" title="6. Vuex"></a>6. Vuex</h2></li>
+</ol>
+<ul>
 <li>state: store data</li>
 <li>getter: similiar with vue computed, using for filter or computed</li>
 <li>mutations: doing calculation, not for asynchronous</li>
@@ -802,9 +829,9 @@ export default new Vuex.Store(&#123;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/01/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">
+                      <a href="/2021/10/12/Vue%E8%B7%AF%E7%94%B1-Vue%20Route/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">React脚手架配置代理总结 Proxy Setting in React For CORS</span>
+                        <span class="hidden-mobile">Vue路由 --- Vue Route</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -812,8 +839,8 @@ export default new Vuex.Store(&#123;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/09/07/%E8%A7%86%E5%B7%AE%E6%BB%9A%E5%8A%A8/">
-                        <span class="hidden-mobile">视差滚动 --- Parallax Scrolling</span>
+                      <a href="/2021/10/12/React%20Hooks/">
+                        <span class="hidden-mobile">React Hooks</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
