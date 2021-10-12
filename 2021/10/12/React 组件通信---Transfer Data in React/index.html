@@ -16,21 +16,21 @@
   <meta name="description" content="">
   <meta name="author" content="Nancy">
   <meta name="keywords" content="">
-  <meta name="description" content="Redux精简版 Redux Without Action建立: - redux 	- store.js   - xxx_reducer.js 在store.js：1)引入redux中的createStore函数，创建一个store2)createStore调用时要传入一个为其服务的reducer3)暴露store对象 import &amp;#123;createStore&amp;#125; from &amp;#3">
+  <meta name="description" content="正常props父子传递 children propsclass A extends Component &amp;#123; 	state &#x3D; &amp;#123;name:&#39;tom&#39;&amp;#125; 	render() &amp;#123; 		const &amp;#123;name&amp;#125; &#x3D; this.state 		return ( 			&lt;div className&amp;#x3D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redux">
-<meta property="og:url" content="http://example.com/2021/10/11/Redux/index.html">
+<meta property="og:title" content="React 组件通信--- Transfer Data in React">
+<meta property="og:url" content="http://example.com/2021/10/12/React%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1---Transfer%20Data%20in%20React/index.html">
 <meta property="og:site_name" content="Nancy&#39;s Blog">
-<meta property="og:description" content="Redux精简版 Redux Without Action建立: - redux 	- store.js   - xxx_reducer.js 在store.js：1)引入redux中的createStore函数，创建一个store2)createStore调用时要传入一个为其服务的reducer3)暴露store对象 import &amp;#123;createStore&amp;#125; from &amp;#3">
+<meta property="og:description" content="正常props父子传递 children propsclass A extends Component &amp;#123; 	state &#x3D; &amp;#123;name:&#39;tom&#39;&amp;#125; 	render() &amp;#123; 		const &amp;#123;name&amp;#125; &#x3D; this.state 		return ( 			&lt;div className&amp;#x3D">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-11T03:42:25.409Z">
-<meta property="article:modified_time" content="2021-10-11T08:02:48.952Z">
+<meta property="article:published_time" content="2021-10-11T23:20:55.382Z">
+<meta property="article:modified_time" content="2021-10-12T01:36:47.184Z">
 <meta property="article:author" content="Nancy">
 <meta property="article:tag" content="React">
-<meta property="article:tag" content="Redux">
+<meta property="article:tag" content="组件通信">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>Redux - Nancy&#39;s Blog</title>
+  <title>React 组件通信--- Transfer Data in React - Nancy&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -181,7 +181,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Redux">
+            <span class="h2" id="subtitle" title="React 组件通信--- Transfer Data in React">
               
             </span>
 
@@ -196,8 +196,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-11 14:42" pubdate>
-        October 11, 2021 pm
+      <time datetime="2021-10-12 10:20" pubdate>
+        October 12, 2021 am
       </time>
     </span>
   
@@ -207,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.6k words
+      3.5k words
     </span>
   
 
@@ -253,124 +253,158 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Redux</h1>
+            <h1 style="display: none">React 组件通信--- Transfer Data in React</h1>
             
             <div class="markdown-body">
-              <h2 id="Redux精简版-Redux-Without-Action"><a href="#Redux精简版-Redux-Without-Action" class="headerlink" title="Redux精简版 Redux Without Action"></a>Redux精简版 Redux Without Action</h2><p>建立:</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">- redux
-	- store.js
-  - xxx_reducer.js<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
-<p>在store.js：<br>1)引入redux中的createStore函数，创建一个store<br>2)createStore调用时要传入一个为其服务的reducer<br>3)暴露store对象</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import &#123;createStore&#125; from &#39;redux&#39;
-import reducer from &#39;.&#x2F;reducer&#39;
-export default createStore(reducer)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
-
-<p>xxx_reducer.js：<br>1)reducer的本质是一个函数，接收：preState,action，返回加工后的状态<br>2)reducer有两个作用：初始化状态，加工状态<br>3)reducer被第一次调用时，是store自动触发的，传递的preState是undefined,传递的action是:{type:‘@@REDUX/INIT_a.2.b.4}</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">export default function reducer(pre,action)&#123;
-    const &#123;type,data&#125; &#x3D; action
-    switch (type) &#123;
-        case &#39;increment&#39;:
-            return pre + data
-           
-        case &#39;decrement&#39;:
-            return pre - data
-  
-        default:
-            return 0       
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p>在index.js中监测store中状态的改变，一旦发生改变重新渲染 ‘<App/>‘<br>备注：redux只负责管理状态,状态的改变驱动着页面的展示要自己写。</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;
-import store from &#39;.&#x2F;store&#39;
-export default class add extends Component &#123;
-
-componentDidMount()&#123;
-    store.subscribe(()&#x3D;&gt;&#123;
-        this.setState(&#123;&#125;)
-    &#125;)
-&#125;
-    increment&#x3D;()&#x3D;&gt;&#123;
-       const&#123;value&#125; &#x3D; this.selectNum
-        store.dispatch(&#123;
-            type:&#39;increment&#39;,
-            data: value*1
-        &#125;)
-    &#125;
-    decrement&#x3D;()&#x3D;&gt;&#123;
-        const&#123;value&#125; &#x3D; this.selectNum
-        store.dispatch(&#123;
-            type:&#39;decrement&#39;,
-            data: value*1
-        &#125;)
-     &#125;  
-    render() &#123;
-        return (
-            &lt;div&gt;
-                &lt;h1&gt;Total is &#123;store.getState()&#125;&lt;&#x2F;h1&gt;
-                &lt;select ref&#x3D;&#123;c&#x3D;&gt;&#123;this.selectNum&#x3D;c&#125;&#125;&gt;
-                    &lt;option value&#x3D;&#39;1&#39;&gt;1&lt;&#x2F;option&gt;
-                    &lt;option value&#x3D;&quot;2&quot;&gt;2&lt;&#x2F;option&gt;
-                    &lt;option value&#x3D;&quot;3&quot;&gt;3&lt;&#x2F;option&gt;
-                &lt;&#x2F;select&gt;
-                &lt;button onClick&#x3D;&#123;this.increment&#125;&gt;add&lt;&#x2F;button&gt;
-                &lt;button onClick&#x3D;&#123;this.decrement&#125;&gt;minuse&lt;&#x2F;button&gt;
-            &lt;&#x2F;div&gt;
-        )
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<h2 id="Redux异步Action版-Async-function-in-Redux"><a href="#Redux异步Action版-Async-function-in-Redux" class="headerlink" title="Redux异步Action版 Async function in Redux"></a>Redux异步Action版 Async function in Redux</h2><p>何时需要异步action：想要对状态进行操作，但是具体的数据靠异步任务返回。<br>具体编码：<br>1)yarn add redux-thunk，并配置在store中</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">store.js
-&#x2F;&#x2F;引入createStore，专门用于创建redux中最为核心的store对象
-import &#123;createStore,applyMiddleware&#125; from &#39;redux&#39;
-&#x2F;&#x2F;引入为Count组件服务的reducer
-import countReducer from &#39;.&#x2F;count_reducer&#39;
-&#x2F;&#x2F;引入redux-thunk，用于支持异步action
-import thunk from &#39;redux-thunk&#39;
-&#x2F;&#x2F;暴露store
-export default createStore(countReducer,applyMiddleware(thunk))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p>2)创建action的函数不再返回一般对象，而是一个函数，该函数中写异步任务.</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#96;&#96;&#96;
-&#x2F;&#x2F; index.js
-import React from &#39;react&#39;;
-import ReactDOM from &#39;react-dom&#39;;
-&#x2F;&#x2F; import &#123; BrowserRouter &#125; from &#39;react-router-dom&#39;;
-import &#39;.&#x2F;index.css&#39;;
-import App from &#39;.&#x2F;App&#39;;
-&#x2F;&#x2F; import reportWebVitals from &#39;.&#x2F;reportWebVitals&#39;;
-import store from &#39;.&#x2F;components&#x2F;increment&#x2F;store&#39;
-store.subscribe(()&#x3D;&gt;&#123;
-	ReactDOM.render(&lt;App&#x2F;&gt;,document.getElementById(&#39;root&#39;))
-&#125;)
-ReactDOM.render(
-  &lt;App &#x2F;&gt;,
-  document.getElementById(&#39;root&#39;)
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p>3)调用action </p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">increment&#x3D;()&#x3D;&gt;&#123;
-   const&#123;value&#125; &#x3D; this.selectNum
-    &#x2F;&#x2F; without action:
-    &#x2F;&#x2F;store.dispatch(&#123;
-    &#x2F;&#x2F;     type:&#39;increment&#39;,
-    &#x2F;&#x2F;     data: value*1
-    &#x2F;&#x2F; &#125;)
-    store.dispatch(createIncrementAction(value*1))
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p>4)异步任务有结果后，分发一个同步的action去真正操作数据。</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">action.js
-export function createIncrementAction(data)&#123;
-    return &#123;type:&#39;increment&#39;,data&#125;
-&#125;
-
-export const createDecrementAction &#x3D; data &#x3D;&gt;(&#123;type:&#39;decrement&#39;,data&#125;)
-
-export const createIncrementAsyncAction &#x3D; (data,syncTime)&#x3D;&gt; &#123;
-    return (dispatch)&#x3D;&gt;&#123;
-		setTimeout(()&#x3D;&gt;&#123;
-			dispatch(createIncrementAction(data))
-		&#125;,syncTime)
+              <h3 id="正常props父子传递-children-props"><a href="#正常props父子传递-children-props" class="headerlink" title="正常props父子传递 children props"></a>正常props父子传递 children props</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">class A extends Component &#123;
+	state &#x3D; &#123;name:&#39;tom&#39;&#125;
+	render() &#123;
+		const &#123;name&#125; &#x3D; this.state
+		return (
+			&lt;div className&#x3D;&quot;a&quot;&gt;
+				&lt;h3&gt;我是A组件&lt;&#x2F;h3&gt;
+        &lt;B name&#x3D;&#123;name&#125;&#x2F;&gt;
+			&lt;&#x2F;div&gt;
+		)
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+&#125;
 
+class B extends Component &#123;
+	render() &#123;
+		return (
+			&lt;div className&#x3D;&quot;b&quot;&gt;
+				&lt;h3&gt;我是B组件,&#123;this.props.name&#125;&lt;&#x2F;h3&gt;
+			&lt;&#x2F;div&gt;
+		)
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="render-props"><a href="#render-props" class="headerlink" title="render props"></a>render props</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;
+export default class Parent extends Component &#123;
+	render() &#123;
+		return (
+			&lt;div className&#x3D;&quot;parent&quot;&gt;
+				&lt;h3&gt;我是Parent组件&lt;&#x2F;h3&gt;
+				&lt;A render&#x3D;&#123;(name)&#x3D;&gt;&lt;B name&#x3D;&#123;name&#125;&#x2F;&gt;&#125;&#x2F;&gt;
+			&lt;&#x2F;div&gt;
+		)
+	&#125;
+&#125;
+
+class A extends Component &#123;
+	state &#x3D; &#123;name:&#39;tom&#39;&#125;
+	render() &#123;
+		const &#123;name&#125; &#x3D; this.state
+		return (
+			&lt;div className&#x3D;&quot;a&quot;&gt;
+				&lt;h3&gt;我是A组件&lt;&#x2F;h3&gt;
+				&#123;this.props.render(name)&#125;
+			&lt;&#x2F;div&gt;
+		)
+	&#125;
+&#125;
+
+class B extends Component &#123;
+	render() &#123;
+		return (
+			&lt;div className&#x3D;&quot;b&quot;&gt;
+				&lt;h3&gt;我是B组件,&#123;this.props.name&#125;&lt;&#x2F;h3&gt;
+			&lt;&#x2F;div&gt;
+		)
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="消息订阅-发布-pubs-sub"><a href="#消息订阅-发布-pubs-sub" class="headerlink" title="消息订阅-发布 pubs-sub"></a>消息订阅-发布 pubs-sub</h3><p>send data</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;
+import PubSub from &#39;pubsub-js&#39;
+
+export default class Search extends Component &#123;
+
+	search &#x3D; ()&#x3D;&gt;&#123;
+		&#x2F;&#x2F;获取用户的输入(连续解构赋值+重命名)
+		const &#123;keyWordElement:&#123;value:keyWord&#125;&#125; &#x3D; this
+		&#x2F;&#x2F;发送请求前通知List更新状态
+		PubSub.publish(&#39;pubKey&#39;,&#123;isFirst:false,isLoading:true&#125;)
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>get data</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;
+import PubSub from &#39;pubsub-js&#39;
+export default class List extends Component &#123;
+
+	componentDidMount()&#123;
+		this.token &#x3D; PubSub.subscribe(&#39;pubKey&#39;,(_,stateObj)&#x3D;&gt;&#123;
+			this.setState(stateObj)
+		&#125;)
+	&#125;
+
+	componentWillUnmount()&#123;
+		PubSub.unsubscribe(this.token)
+	&#125;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="集中式管理-redux"><a href="#集中式管理-redux" class="headerlink" title="集中式管理 redux"></a>集中式管理 redux</h3><p>Refer to previous blog</p>
+<h3 id="生产者-消费者模式-context"><a href="#生产者-消费者模式-context" class="headerlink" title="生产者-消费者模式 context"></a>生产者-消费者模式 context</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;
+
+&#x2F;&#x2F;创建Context对象
+const MyContext &#x3D; React.createContext()
+const &#123;Provider,Consumer&#125; &#x3D; MyContext
+export default class A extends Component &#123;
+
+	state &#x3D; &#123;username:&#39;tom&#39;,age:18&#125;
+
+	render() &#123;
+		const &#123;username,age&#125; &#x3D; this.state
+		return (
+			&lt;div className&#x3D;&quot;parent&quot;&gt;
+				&lt;h3&gt;我是A组件&lt;&#x2F;h3&gt;
+				&lt;h4&gt;我的用户名是:&#123;username&#125;&lt;&#x2F;h4&gt;
+				&lt;Provider value&#x3D;&#123;&#123;username,age&#125;&#125;&gt;
+					&lt;B&#x2F;&gt;
+				&lt;&#x2F;Provider&gt;
+			&lt;&#x2F;div&gt;
+		)
+	&#125;
+&#125;
+
+class B extends Component &#123;
+	render() &#123;
+		return (
+			&lt;div className&#x3D;&quot;child&quot;&gt;
+				&lt;h3&gt;我是B组件&lt;&#x2F;h3&gt;
+				&lt;C&#x2F;&gt;
+			&lt;&#x2F;div&gt;
+		)
+	&#125;
+&#125;
+
+&#x2F;* class C extends Component &#123;
+	&#x2F;&#x2F;声明接收context
+	static contextType &#x3D; MyContext
+	render() &#123;
+		const &#123;username,age&#125; &#x3D; this.context
+		return (
+			&lt;div className&#x3D;&quot;grand&quot;&gt;
+				&lt;h3&gt;我是C组件&lt;&#x2F;h3&gt;
+				&lt;h4&gt;我从A组件接收到的用户名:&#123;username&#125;,年龄是&#123;age&#125;&lt;&#x2F;h4&gt;
+			&lt;&#x2F;div&gt;
+		)
+	&#125;
+&#125; *&#x2F;
+
+function C()&#123;
+	return (
+		&lt;div className&#x3D;&quot;grand&quot;&gt;
+			&lt;h3&gt;我是C组件&lt;&#x2F;h3&gt;
+			&lt;h4&gt;我从A组件接收到的用户名:
+			&lt;Consumer&gt;
+				&#123;value &#x3D;&gt; &#96;$&#123;value.username&#125;,年龄是$&#123;value.age&#125;&#96;&#125;
+			&lt;&#x2F;Consumer&gt;
+			&lt;&#x2F;h4&gt;
+		&lt;&#x2F;div&gt;
+	)
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="组件间的关系"><a href="#组件间的关系" class="headerlink" title="组件间的关系"></a>组件间的关系</h2><p>父子组件：props<br>兄弟组件(非嵌套组件)：消息订阅-发布、集中式管理<br>祖孙组件(跨级组件)：消息订阅-发布、集中式管理、context</p>
 
             </div>
             <hr>
@@ -383,7 +417,7 @@ export const createIncrementAsyncAction &#x3D; (data,syncTime)&#x3D;&gt; &#123;
                     
                       <a class="hover-with-bg" href="/tags/React/">React</a>
                     
-                      <a class="hover-with-bg" href="/tags/Redux/">Redux</a>
+                      <a class="hover-with-bg" href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>
                     
                   </div>
                 
@@ -394,9 +428,9 @@ export const createIncrementAsyncAction &#x3D; (data,syncTime)&#x3D;&gt; &#123;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/11/React-Redux/">
+                      <a href="/2021/10/12/React%20Hooks/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">React-Redux</span>
+                        <span class="hidden-mobile">React Hooks</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -404,8 +438,8 @@ export const createIncrementAsyncAction &#x3D; (data,syncTime)&#x3D;&gt; &#123;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/10/%E5%B0%81%E8%A3%85axios/">
-                        <span class="hidden-mobile">封装Axios --- Axios Module</span>
+                      <a href="/2021/10/11/React-Redux/">
+                        <span class="hidden-mobile">React-Redux</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,48 @@
   
   
   <entry>
+    <title>React Hooks</title>
+    <link href="/2021/10/12/React%20Hooks/"/>
+    <url>/2021/10/12/React%20Hooks/</url>
+    
+    <content type="html"><![CDATA[<h2 id="React-Hook-Hooks"><a href="#React-Hook-Hooks" class="headerlink" title="React Hook/Hooks"></a>React Hook/Hooks</h2><p>(1). Hook是React 16.8.0版本增加的新特性/新语法<br>(2). 可以让你在函数组件中使用 state 以及其他的 React 特性</p><h2 id="三个常用的Hook"><a href="#三个常用的Hook" class="headerlink" title="三个常用的Hook"></a>三个常用的Hook</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">(1). State Hook: React.useState()(2). Effect Hook: React.useEffect()(3). Ref Hook: React.useRef()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><h3 id="State-Hook"><a href="#State-Hook" class="headerlink" title="State Hook"></a>State Hook</h3><p>(1). State Hook让函数组件也可以有state状态, 并进行状态数据的读写操作<br>(2). 语法: const [xxx, setXxx] = React.useState</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; classthis.setState(state &#x3D;&gt; (&#123;count:state.count+1&#125;))&lt;h2&gt;当前求和为&#123;this.state.count&#125;&lt;&#x2F;h2&gt;&#x2F;&#x2F; functionconst [count,setCount] &#x3D; React.useState(0)  function add()&#123;&#x2F;&#x2F;setCount(count+1) &#x2F;&#x2F;第一种写法setCount(count &#x3D;&gt; count+1 )&#125;  &lt;h2&gt;当前求和为：&#123;count&#125;&lt;&#x2F;h2&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>(3). useState()说明:<br>    参数: 第一次初始化指定的值在内部作缓存<br>    返回值: 包含2个元素的数组, 第1个为内部当前状态值, 第2个为更新状态值的函数<br>(4). setXxx()2种写法:<br>    setXxx(newValue): 参数为非函数值, 直接指定新的状态值, 内部用其覆盖原来的状态值<br>    setXxx(value =&gt; newValue): 参数为函数, 接收原本的状态值, 返回新的状态值, 内部用其覆盖原来的状态值</p><h3 id="Effect-Hook"><a href="#Effect-Hook" class="headerlink" title="Effect Hook"></a>Effect Hook</h3><p>(1)Effect Hook 用于模拟类组件中的生命周期钩子</p><p>(2)React中的操作:</p><ul><li>发ajax请求数据获取</li><li>设置订阅 / 启动定时器</li><li>手动更改真实DOM</li></ul><p>(3)可以把 useEffect Hook 看做如下三个函数的组合</p><ul><li>componentDidMount()</li><li>componentDidUpdate()</li><li>componentWillUnmount() <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; classunmount &#x3D; ()&#x3D;&gt;&#123;ReactDOM.unmountComponentAtNode(document.getElementById(&#39;root&#39;))&#125;&#x2F;&#x2F; functionReact.useEffect(()&#x3D;&gt;&#123;let timer &#x3D; setInterval(()&#x3D;&gt;&#123;setCount(count &#x3D;&gt; count+1 )&#125;,1000)return ()&#x3D;&gt;&#123;clearInterval(timer)&#125;&#125;,[])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="Ref-Hook"><a href="#Ref-Hook" class="headerlink" title="Ref Hook"></a>Ref Hook</h3>(1). Ref Hook可以在函数组件中存储/查找组件内的标签或任意其它数据<br>(2). 语法: const refContainer = useRef()<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;classmyRef &#x3D; React.createRef()show &#x3D; ()&#x3D;&gt;&#123;alert(this.myRef.current.value)&#125;&lt;input type&#x3D;&quot;text&quot; ref&#x3D;&#123;this.myRef&#125;&#x2F;&gt;&#x2F;&#x2F; functionconst myRef &#x3D; React.useRef()function show()&#123;alert(myRef.current.value)&#125;&lt;input type&#x3D;&quot;text&quot; ref&#x3D;&#123;myRef&#125;&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>(3). 作用:保存标签对象,功能与React.createRef()一样</li></ul><p>完整例子</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React from &#39;react&#39;import ReactDOM from &#39;react-dom&#39;&#x2F;&#x2F;类式组件&#x2F;* class Demo extends React.Component &#123;state &#x3D; &#123;count:0&#125;myRef &#x3D; React.createRef()add &#x3D; ()&#x3D;&gt;&#123;this.setState(state &#x3D;&gt; (&#123;count:state.count+1&#125;))&#125;unmount &#x3D; ()&#x3D;&gt;&#123;ReactDOM.unmountComponentAtNode(document.getElementById(&#39;root&#39;))&#125;show &#x3D; ()&#x3D;&gt;&#123;alert(this.myRef.current.value)&#125;componentDidMount()&#123;this.timer &#x3D; setInterval(()&#x3D;&gt;&#123;this.setState( state &#x3D;&gt; (&#123;count:state.count+1&#125;))&#125;,1000)&#125;componentWillUnmount()&#123;clearInterval(this.timer)&#125;render() &#123;return (&lt;div&gt;&lt;input type&#x3D;&quot;text&quot; ref&#x3D;&#123;this.myRef&#125;&#x2F;&gt;&lt;h2&gt;当前求和为&#123;this.state.count&#125;&lt;&#x2F;h2&gt;&lt;button onClick&#x3D;&#123;this.add&#125;&gt;点我+1&lt;&#x2F;button&gt;&lt;button onClick&#x3D;&#123;this.unmount&#125;&gt;卸载组件&lt;&#x2F;button&gt;&lt;button onClick&#x3D;&#123;this.show&#125;&gt;点击提示数据&lt;&#x2F;button&gt;&lt;&#x2F;div&gt;)&#125;&#125; *&#x2F;function Demo()&#123;&#x2F;&#x2F;console.log(&#39;Demo&#39;);const [count,setCount] &#x3D; React.useState(0)const myRef &#x3D; React.useRef()React.useEffect(()&#x3D;&gt;&#123;let timer &#x3D; setInterval(()&#x3D;&gt;&#123;setCount(count &#x3D;&gt; count+1 )&#125;,1000)return ()&#x3D;&gt;&#123;clearInterval(timer)&#125;&#125;,[])&#x2F;&#x2F;加的回调function add()&#123;&#x2F;&#x2F;setCount(count+1) &#x2F;&#x2F;第一种写法setCount(count &#x3D;&gt; count+1 )&#125;&#x2F;&#x2F;提示输入的回调function show()&#123;alert(myRef.current.value)&#125;&#x2F;&#x2F;卸载组件的回调function unmount()&#123;ReactDOM.unmountComponentAtNode(document.getElementById(&#39;root&#39;))&#125;return (&lt;div&gt;&lt;input type&#x3D;&quot;text&quot; ref&#x3D;&#123;myRef&#125;&#x2F;&gt;&lt;h2&gt;当前求和为：&#123;count&#125;&lt;&#x2F;h2&gt;&lt;button onClick&#x3D;&#123;add&#125;&gt;点我+1&lt;&#x2F;button&gt;&lt;button onClick&#x3D;&#123;unmount&#125;&gt;卸载组件&lt;&#x2F;button&gt;&lt;button onClick&#x3D;&#123;show&#125;&gt;点我提示数据&lt;&#x2F;button&gt;&lt;&#x2F;div&gt;)&#125;export default Demo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>React</tag>
+      
+      <tag>Hooks</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>React 组件通信--- Transfer Data in React</title>
+    <link href="/2021/10/12/React%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1---Transfer%20Data%20in%20React/"/>
+    <url>/2021/10/12/React%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1---Transfer%20Data%20in%20React/</url>
+    
+    <content type="html"><![CDATA[<h3 id="正常props父子传递-children-props"><a href="#正常props父子传递-children-props" class="headerlink" title="正常props父子传递 children props"></a>正常props父子传递 children props</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">class A extends Component &#123;state &#x3D; &#123;name:&#39;tom&#39;&#125;render() &#123;const &#123;name&#125; &#x3D; this.statereturn (&lt;div className&#x3D;&quot;a&quot;&gt;&lt;h3&gt;我是A组件&lt;&#x2F;h3&gt;        &lt;B name&#x3D;&#123;name&#125;&#x2F;&gt;&lt;&#x2F;div&gt;)&#125;&#125;class B extends Component &#123;render() &#123;return (&lt;div className&#x3D;&quot;b&quot;&gt;&lt;h3&gt;我是B组件,&#123;this.props.name&#125;&lt;&#x2F;h3&gt;&lt;&#x2F;div&gt;)&#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="render-props"><a href="#render-props" class="headerlink" title="render props"></a>render props</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;export default class Parent extends Component &#123;render() &#123;return (&lt;div className&#x3D;&quot;parent&quot;&gt;&lt;h3&gt;我是Parent组件&lt;&#x2F;h3&gt;&lt;A render&#x3D;&#123;(name)&#x3D;&gt;&lt;B name&#x3D;&#123;name&#125;&#x2F;&gt;&#125;&#x2F;&gt;&lt;&#x2F;div&gt;)&#125;&#125;class A extends Component &#123;state &#x3D; &#123;name:&#39;tom&#39;&#125;render() &#123;const &#123;name&#125; &#x3D; this.statereturn (&lt;div className&#x3D;&quot;a&quot;&gt;&lt;h3&gt;我是A组件&lt;&#x2F;h3&gt;&#123;this.props.render(name)&#125;&lt;&#x2F;div&gt;)&#125;&#125;class B extends Component &#123;render() &#123;return (&lt;div className&#x3D;&quot;b&quot;&gt;&lt;h3&gt;我是B组件,&#123;this.props.name&#125;&lt;&#x2F;h3&gt;&lt;&#x2F;div&gt;)&#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="消息订阅-发布-pubs-sub"><a href="#消息订阅-发布-pubs-sub" class="headerlink" title="消息订阅-发布 pubs-sub"></a>消息订阅-发布 pubs-sub</h3><p>send data</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;import PubSub from &#39;pubsub-js&#39;export default class Search extends Component &#123;search &#x3D; ()&#x3D;&gt;&#123;&#x2F;&#x2F;获取用户的输入(连续解构赋值+重命名)const &#123;keyWordElement:&#123;value:keyWord&#125;&#125; &#x3D; this&#x2F;&#x2F;发送请求前通知List更新状态PubSub.publish(&#39;pubKey&#39;,&#123;isFirst:false,isLoading:true&#125;)&#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>get data</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;import PubSub from &#39;pubsub-js&#39;export default class List extends Component &#123;componentDidMount()&#123;this.token &#x3D; PubSub.subscribe(&#39;pubKey&#39;,(_,stateObj)&#x3D;&gt;&#123;this.setState(stateObj)&#125;)&#125;componentWillUnmount()&#123;PubSub.unsubscribe(this.token)&#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h3 id="集中式管理-redux"><a href="#集中式管理-redux" class="headerlink" title="集中式管理 redux"></a>集中式管理 redux</h3><p>Refer to previous blog</p><h3 id="生产者-消费者模式-context"><a href="#生产者-消费者模式-context" class="headerlink" title="生产者-消费者模式 context"></a>生产者-消费者模式 context</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React, &#123; Component &#125; from &#39;react&#39;&#x2F;&#x2F;创建Context对象const MyContext &#x3D; React.createContext()const &#123;Provider,Consumer&#125; &#x3D; MyContextexport default class A extends Component &#123;state &#x3D; &#123;username:&#39;tom&#39;,age:18&#125;render() &#123;const &#123;username,age&#125; &#x3D; this.statereturn (&lt;div className&#x3D;&quot;parent&quot;&gt;&lt;h3&gt;我是A组件&lt;&#x2F;h3&gt;&lt;h4&gt;我的用户名是:&#123;username&#125;&lt;&#x2F;h4&gt;&lt;Provider value&#x3D;&#123;&#123;username,age&#125;&#125;&gt;&lt;B&#x2F;&gt;&lt;&#x2F;Provider&gt;&lt;&#x2F;div&gt;)&#125;&#125;class B extends Component &#123;render() &#123;return (&lt;div className&#x3D;&quot;child&quot;&gt;&lt;h3&gt;我是B组件&lt;&#x2F;h3&gt;&lt;C&#x2F;&gt;&lt;&#x2F;div&gt;)&#125;&#125;&#x2F;* class C extends Component &#123;&#x2F;&#x2F;声明接收contextstatic contextType &#x3D; MyContextrender() &#123;const &#123;username,age&#125; &#x3D; this.contextreturn (&lt;div className&#x3D;&quot;grand&quot;&gt;&lt;h3&gt;我是C组件&lt;&#x2F;h3&gt;&lt;h4&gt;我从A组件接收到的用户名:&#123;username&#125;,年龄是&#123;age&#125;&lt;&#x2F;h4&gt;&lt;&#x2F;div&gt;)&#125;&#125; *&#x2F;function C()&#123;return (&lt;div className&#x3D;&quot;grand&quot;&gt;&lt;h3&gt;我是C组件&lt;&#x2F;h3&gt;&lt;h4&gt;我从A组件接收到的用户名:&lt;Consumer&gt;&#123;value &#x3D;&gt; &#96;$&#123;value.username&#125;,年龄是$&#123;value.age&#125;&#96;&#125;&lt;&#x2F;Consumer&gt;&lt;&#x2F;h4&gt;&lt;&#x2F;div&gt;)&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h2 id="组件间的关系"><a href="#组件间的关系" class="headerlink" title="组件间的关系"></a>组件间的关系</h2><p>父子组件：props<br>兄弟组件(非嵌套组件)：消息订阅-发布、集中式管理<br>祖孙组件(跨级组件)：消息订阅-发布、集中式管理、context</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>React</tag>
+      
+      <tag>组件通信</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>React-Redux</title>
     <link href="/2021/10/11/React-Redux/"/>
     <url>/2021/10/11/React-Redux/</url>
@@ -56,9 +98,9 @@
     
     <tags>
       
-      <tag>Axios</tag>
-      
       <tag>Vue</tag>
+      
+      <tag>Axios</tag>
       
     </tags>
     
@@ -121,9 +163,9 @@
     
     <tags>
       
-      <tag>Vue</tag>
-      
       <tag>组件通信</tag>
+      
+      <tag>Vue</tag>
       
     </tags>
     
@@ -216,6 +258,27 @@
   
   
   <entry>
+    <title>BFC</title>
+    <link href="/2021/07/01/BFC/"/>
+    <url>/2021/07/01/BFC/</url>
+    
+    <content type="html"><![CDATA[<h2 id="BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："><a href="#BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：" class="headerlink" title="BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："></a>BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：</h2><ul><li>内部的盒子会在垂直方向上一个接一个的放置</li><li>对于同一个BFC的俩个相邻的盒子的margin会发生重叠，与方向无关。</li><li>每个元素的左外边距与包含块的左边界相接触（从左到右），即使浮动元素也是如此</li><li>BFC的区域不会与float的元素区域重叠</li><li>计算BFC的高度时，浮动子元素也参与计算</li><li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然</li><li>BFC目的是形成一个相对于外界完全独立的空间，让内部的子元素不会影响到外部的元素</li></ul><h2 id="触发BFC的条件包含不限于："><a href="#触发BFC的条件包含不限于：" class="headerlink" title="触发BFC的条件包含不限于："></a>触发BFC的条件包含不限于：</h2><ul><li>根元素，即HTML元素</li><li>浮动元素：float值为left、right</li><li>overflow值不为 visible，为 auto、scroll、hidden</li><li>display的值为inline-block、inltable-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid</li><li>position的值为absolute或fixed</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>CSS</tag>
+      
+      <tag>Layout</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>React Router</title>
     <link href="/2021/07/01/React-Router/"/>
     <url>/2021/07/01/React-Router/</url>
@@ -231,27 +294,6 @@
       <tag>Router</tag>
       
       <tag>路由</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>BFC</title>
-    <link href="/2021/07/01/BFC/"/>
-    <url>/2021/07/01/BFC/</url>
-    
-    <content type="html"><![CDATA[<h2 id="BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："><a href="#BFC（Block-Formatting-Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：" class="headerlink" title="BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则："></a>BFC（Block Formatting Context），即块级格式化上下文，它是页面中的一块渲染区域，并且有一套属于自己的渲染规则：</h2><ul><li>内部的盒子会在垂直方向上一个接一个的放置</li><li>对于同一个BFC的俩个相邻的盒子的margin会发生重叠，与方向无关。</li><li>每个元素的左外边距与包含块的左边界相接触（从左到右），即使浮动元素也是如此</li><li>BFC的区域不会与float的元素区域重叠</li><li>计算BFC的高度时，浮动子元素也参与计算</li><li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然</li><li>BFC目的是形成一个相对于外界完全独立的空间，让内部的子元素不会影响到外部的元素</li></ul><h2 id="触发BFC的条件包含不限于："><a href="#触发BFC的条件包含不限于：" class="headerlink" title="触发BFC的条件包含不限于："></a>触发BFC的条件包含不限于：</h2><ul><li>根元素，即HTML元素</li><li>浮动元素：float值为left、right</li><li>overflow值不为 visible，为 auto、scroll、hidden</li><li>display的值为inline-block、inltable-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid</li><li>position的值为absolute或fixed</li></ul>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>CSS</tag>
-      
-      <tag>Layout</tag>
       
     </tags>
     

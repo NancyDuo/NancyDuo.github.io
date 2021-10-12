@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="en" >
 
 
 
@@ -139,11 +139,6 @@
           </li>
         
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -188,29 +183,35 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/01/React-Router/" target="_self">
-          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="React Router">
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="如何居中 --- Center Position">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/01/React-Router/" target="_self">
-          React Router
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+          如何居中 --- Center Position
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/01/React-Router/" target="_self">
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
           
           
             
           
-          路由的基本使用 Basic Usage1.明确好界面中的导航区、展示区2.导航区的a标签改为Link标签
-&lt;Link to&#x3D;&quot;&#x2F;xxxxx&quot;&gt;Demo&lt;&#x2F;Link&gt;
-3.展示区写Route标签进行路径的匹配
-&lt;Route path&#x3D;&#39;&#x2F;xxxx&#39; component&#x3D;&#1
+          实现元素水平垂直居中的方式：利用定位 positon+margin:auto&lt;style&gt;
+    .father&#123;
+        position: relative;
+    &#125;
+    .son&#123;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+
         </a>
       </p>
 
@@ -218,8 +219,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-01 09:36" pubdate>
-              2021-07-01
+            <time datetime="2021-07-21 12:30" pubdate>
+              2021-07-21
             </time>
           </div>
         
@@ -228,11 +229,64 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/React/">React</a>
+              <a href="/tags/CSS/">CSS</a>
             
-              <a href="/tags/Router/">Router</a>
+              <a href="/tags/Layout/">Layout</a>
             
-              <a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a>
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="Layout 常见布局">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+          Layout 常见布局
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+          
+          
+            
+          
+          Two ComponentsBy float双栏布局非常常见，往往是以一个定宽栏和一个自适应的栏并排展示存在 
+
+使用 float 左浮左边栏 set float on the left component
+右边模块使用 margin-left 撑出内容块做内容展示 set margin-left on the right one
+为父级元素添加BFC，防止下方元素飞到上方内容 add BFC o
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-21 12:30" pubdate>
+              2021-07-21
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSS/">CSS</a>
+            
+              <a href="/tags/Layout/">Layout</a>
             
           </div>
         
@@ -289,6 +343,62 @@ BFC的区域不会与float的元素区域重叠
               <a href="/tags/CSS/">CSS</a>
             
               <a href="/tags/Layout/">Layout</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/01/React-Router/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="React Router">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/01/React-Router/" target="_self">
+          React Router
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/01/React-Router/" target="_self">
+          
+          
+            
+          
+          路由的基本使用 Basic Usage1.明确好界面中的导航区、展示区2.导航区的a标签改为Link标签
+&lt;Link to&#x3D;&quot;&#x2F;xxxxx&quot;&gt;Demo&lt;&#x2F;Link&gt;
+3.展示区写Route标签进行路径的匹配
+&lt;Route path&#x3D;&#39;&#x2F;xxxx&#39; component&#x3D;&#1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-01 09:36" pubdate>
+              2021-07-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/React/">React</a>
+            
+              <a href="/tags/Router/">Router</a>
+            
+              <a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a>
             
           </div>
         
