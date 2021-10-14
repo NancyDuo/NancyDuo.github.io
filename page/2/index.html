@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" data-default-color-scheme=auto>
 
 
 
@@ -139,6 +139,11 @@
           </li>
         
         
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -178,6 +183,175 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/10/10/%E5%B0%81%E8%A3%85axios/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="封装Axios --- Axios Module">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/10/%E5%B0%81%E8%A3%85axios/" target="_self">
+          封装Axios --- Axios Module
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/10/%E5%B0%81%E8%A3%85axios/" target="_self">
+          
+          
+            
+          
+          说明设置接口请求前缀：根据开发、测试、生产环境的不同，前缀需要加以区分请求头 : 来实现一些具体的业务，必须携带一些参数才可以请求(例如：会员业务)状态码: 根据接口返回的不同status ， 来执行不同的业务，这块需要和后端约定好请求方法：根据get、post等方法进行一个再次封装，使用起来更为方便请求拦截器: 根据请求的请求头设定，来决定哪些请求可以访问响应拦截器： 这块就是根据 后端`返回来
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-10 08:48" pubdate>
+              2021-10-10
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Axios/">Axios</a>
+            
+              <a href="/tags/Vue/">Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/10/01/React%E7%9F%A5%E8%AF%86%E7%82%B9/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="React知识点">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/01/React%E7%9F%A5%E8%AF%86%E7%82%B9/" target="_self">
+          React知识点
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/01/React%E7%9F%A5%E8%AF%86%E7%82%B9/" target="_self">
+          
+          
+            
+          
+          1. setStatesetState更新状态的2种写法	(1). setState(stateChange, [callback])------对象式的setState
+            1.stateChange为状态改变对象(该对象可以体现出状态的更改)
+            2.callback是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用
+			
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-01 19:06" pubdate>
+              2021-10-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/React/">React</a>
+            
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/10/01/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="React脚手架配置代理总结 Proxy Setting in React For CORS">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/01/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" target="_self">
+          React脚手架配置代理总结 Proxy Setting in React For CORS
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/01/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" target="_self">
+          
+          
+            
+          
+          方法一在package.json中追加如下配置
+"proxy":"http://localhost:5000"
+
+说明：
+
+优点：配置简单，前端请求资源时可以不加任何前缀。
+缺点：不能配置多个代理。
+工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）
+
+方法二
+第一步：创建代理配置文件
+在src下创建配置文件：src&#x2F;setupP
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-01 19:06" pubdate>
+              2021-10-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/React/">React</a>
+            
+              <a href="/tags/Proxy/">Proxy</a>
+            
+              <a href="/tags/CORS/">CORS</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -355,30 +529,35 @@ Media QueryMedia query breakpoints are pixel values that a developer/designer ca
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
-          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="Layout 常见布局">
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="如何居中 --- Center Position">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
-          Layout 常见布局
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+          如何居中 --- Center Position
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
           
           
             
           
-          Two ComponentsBy float双栏布局非常常见，往往是以一个定宽栏和一个自适应的栏并排展示存在 
+          实现元素水平垂直居中的方式：利用定位 positon+margin:auto&lt;style&gt;
+    .father&#123;
+        position: relative;
+    &#125;
+    .son&#123;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
 
-使用 float 左浮左边栏 set float on the left component
-右边模块使用 margin-left 撑出内容块做内容展示 set margin-left on the right one
-为父级元素添加BFC，防止下方元素飞到上方内容 add BFC o
         </a>
       </p>
 
@@ -410,35 +589,30 @@ Media QueryMedia query breakpoints are pixel values that a developer/designer ca
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
-          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="如何居中 --- Center Position">
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="Layout 常见布局">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
-          如何居中 --- Center Position
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+          Layout 常见布局
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
           
           
             
           
-          实现元素水平垂直居中的方式：利用定位 positon+margin:auto&lt;style&gt;
-    .father&#123;
-        position: relative;
-    &#125;
-    .son&#123;
-        position: absolute;
-        top:0;
-        left:0;
-        right:0;
+          Two ComponentsBy float双栏布局非常常见，往往是以一个定宽栏和一个自适应的栏并排展示存在 
 
+使用 float 左浮左边栏 set float on the left component
+右边模块使用 margin-left 撑出内容块做内容展示 set margin-left on the right one
+为父级元素添加BFC，防止下方元素飞到上方内容 add BFC o
         </a>
       </p>
 
@@ -578,91 +752,11 @@ BFC的区域不会与float的元素区域重叠
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/11/TypeScript/" target="_self">
-          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="TypeScript">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/11/TypeScript/" target="_self">
-          TypeScript
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/11/TypeScript/" target="_self">
-          
-          
-            
-          
-          基本类型类型声明
-typescript
-    let 变量: 类型;
-    
-    let 变量: 类型 &#x3D; 值;
-    
-    function fn(参数: 类型, 参数: 类型): 类型&#123;
-        ...
-    &#125;
-类型：
-
-
-
-类型
-例子
-描述
-
-
-
-number
-1, -33, 2.5
-任意数字
-
-
-string
-‘hi’, “hi”, 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-11 19:16" pubdate>
-              2021-05-11
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Router/">Router</a>
-            
-              <a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a>
-            
-              <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
-            
-              <a href="/tags/TypeScript/">TypeScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
