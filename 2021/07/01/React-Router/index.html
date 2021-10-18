@@ -24,7 +24,7 @@
 <meta property="og:description" content="路由的基本使用 Basic Usage1.明确好界面中的导航区、展示区2.导航区的a标签改为Link标签 &lt;Link to&#x3D;&quot;&#x2F;xxxxx&quot;&gt;Demo&lt;&#x2F;Link&gt; 3.展示区写Route标签进行路径的匹配 &lt;Route path&#x3D;&#39;&#x2F;xxxx&#39; component&#x3D;&amp;#1">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-30T23:36:35.000Z">
-<meta property="article:modified_time" content="2021-10-10T09:21:37.882Z">
+<meta property="article:modified_time" content="2021-10-18T11:47:45.684Z">
 <meta property="article:author" content="Nancy">
 <meta property="article:tag" content="React">
 <meta property="article:tag" content="Router">
@@ -266,7 +266,7 @@
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;Link to&#x3D;&quot;&#x2F;xxxxx&quot;&gt;Demo&lt;&#x2F;Link&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p>3.展示区写Route标签进行路径的匹配</p>
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;Route path&#x3D;&#39;&#x2F;xxxx&#39; component&#x3D;&#123;Demo&#125;&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>4.<App>的最外侧包裹了一个<BrowserRouter>或<HashRouter></p>
+<p>4.<strong>App</strong>的最外侧包裹了一个<strong>BrowserRouter</strong></p>
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import React from &#39;react&#39;;
 import About from &#39;.&#x2F;components&#x2F;RouterDemo&#x2F;About&#39;;
 import Home from &#39;.&#x2F;components&#x2F;RouterDemo&#x2F;Home&#39;
@@ -326,7 +326,7 @@ export default class MyNavLink extends Component &#123;
 <h2 id="Switch的使用"><a href="#Switch的使用" class="headerlink" title="Switch的使用"></a>Switch的使用</h2></li>
 </ul>
 <p>1.通常情况下，path和component是一一对应的关系。<br>2.Switch可以提高路由匹配效率(单一匹配)。</p>
-<h2 id="路由的严格匹配与模糊匹配"><a href="#路由的严格匹配与模糊匹配" class="headerlink" title="路由的严格匹配与模糊匹配"></a>路由的严格匹配与模糊匹配</h2><p>1.默认使用的是模糊匹配（简单记：【输入的路径】必须包含要【匹配的路径】，且顺序要一致）<br>2.开启严格匹配：<Route exact={true} path="/about" component={About}/><br>3.严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由</p>
+<h2 id="路由的严格匹配与模糊匹配"><a href="#路由的严格匹配与模糊匹配" class="headerlink" title="路由的严格匹配与模糊匹配"></a>路由的严格匹配与模糊匹配</h2><p>1.默认使用的是模糊匹配（简单记：【输入的路径】必须包含要【匹配的路径】，且顺序要一致）<br>2.开启严格匹配：<br><strong>exact</strong><br>3.严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由</p>
 <h2 id="Redirect的使用"><a href="#Redirect的使用" class="headerlink" title="Redirect的使用"></a>Redirect的使用</h2><p>1.一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由<br>2.具体编码：</p>
 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;Switch&gt;
 &lt;Route path&#x3D;&quot;&#x2F;about&quot; component&#x3D;&#123;About&#125;&#x2F;&gt;
