@@ -585,30 +585,35 @@ Media QueryMedia query breakpoints are pixel values that a developer/designer ca
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
-          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="Layout 常见布局">
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="如何居中 --- Center Position">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
-          Layout 常见布局
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+          如何居中 --- Center Position
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
           
           
             
           
-          Two ComponentsBy float双栏布局非常常见，往往是以一个定宽栏和一个自适应的栏并排展示存在 
+          实现元素水平垂直居中的方式：利用定位 positon+margin:auto&lt;style&gt;
+    .father&#123;
+        position: relative;
+    &#125;
+    .son&#123;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
 
-使用 float 左浮左边栏 set float on the left component
-右边模块使用 margin-left 撑出内容块做内容展示 set margin-left on the right one
-为父级元素添加BFC，防止下方元素飞到上方内容 add BFC o
         </a>
       </p>
 
@@ -640,35 +645,30 @@ Media QueryMedia query breakpoints are pixel values that a developer/designer ca
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
-          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="如何居中 --- Center Position">
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+          <img src="/img/er.jpeg" srcset="/img/loading.gif" lazyload alt="Layout 常见布局">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
-          如何居中 --- Center Position
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
+          Layout 常见布局
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/21/%E5%B1%85%E4%B8%AD-Center/" target="_self">
+        <a href="/2021/07/21/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80-Layout/" target="_self">
           
           
             
           
-          实现元素水平垂直居中的方式：利用定位 positon+margin:auto&lt;style&gt;
-    .father&#123;
-        position: relative;
-    &#125;
-    .son&#123;
-        position: absolute;
-        top:0;
-        left:0;
-        right:0;
+          Two ComponentsBy float双栏布局非常常见，往往是以一个定宽栏和一个自适应的栏并排展示存在 
 
+使用 float 左浮左边栏 set float on the left component
+右边模块使用 margin-left 撑出内容块做内容展示 set margin-left on the right one
+为父级元素添加BFC，防止下方元素飞到上方内容 add BFC o
         </a>
       </p>
 
